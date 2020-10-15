@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\Zero.Core.WebApi\bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Zero.Core.Common\Zero.Core.Common.csproj" />
+    <ProjectReference Include="..\Zero.Core.IRepositories\Zero.Core.IRepositories.csproj" />
+    <ProjectReference Include="..\Zero.Core.IServices\Zero.Core.IServices.csproj" />
+  </ItemGroup>
+</Project>
