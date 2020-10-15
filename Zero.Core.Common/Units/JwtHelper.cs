@@ -39,7 +39,10 @@ namespace Zero.Core.Common.Units
             string access_token = new JwtSecurityTokenHandler().WriteToken(token);
             return access_token;
         }
-
+        /// <summary>
+        /// 读取token
+        /// </summary>
+        /// <param name="token"></param>
         public static void ReadToken(string token)
         {
             var handler = new JwtSecurityTokenHandler();
