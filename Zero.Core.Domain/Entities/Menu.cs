@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,5 +45,12 @@ namespace Zero.Core.Domain.Entities
         public int? IdParent { get; set; }
 
         public ICollection<RoleMenu> RoleMenus { get; set; }
+
+        
+        /// <summary>
+        /// 子菜单
+        /// </summary>
+        [NotMapped]
+        public List<Menu> Childrens { get; set; }
     }
 }

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Zero.Core.Domain.Entities;
-using Zero.Core.IServices.Base;
+using Zero.Core.IRepositories.Base;
 
-namespace Zero.Core.IServices
+namespace Zero.Core.IRepositories
 {
-    public interface IDictionariesService:IBaseService<Dictionaries>
+    public interface IDictionariesRepository:IRepository<Dictionaries>
     {
         
     }

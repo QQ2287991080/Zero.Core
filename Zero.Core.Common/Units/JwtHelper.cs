@@ -13,10 +13,11 @@ namespace Zero.Core.Common.Units
     /// <summary>
     /// Jwt 生成帮助类
     /// </summary>
-    public static class JwtHelper
+    public  class JwtHelper: IJwtProvider
     {
-        public static string GetToken(string userName)
+        public string GetJwtToken(JwtInput input)
         {
+            string userName = input.UserName;
             var claims = new[]
             {
               new Claim(ClaimTypes.Name, userName)
@@ -39,19 +40,65 @@ namespace Zero.Core.Common.Units
             string access_token = new JwtSecurityTokenHandler().WriteToken(token);
             return access_token;
         }
+
+
         /// <summary>
         /// 读取token
         /// </summary>
         /// <param name="token"></param>
-        public static void ReadToken(string token)
+        public JwtOutput ReadJwtToken(string token)
         {
             var handler = new JwtSecurityTokenHandler();
             var tokenContent = handler.ReadJwtToken(token);
+            return new JwtOutput();
         }
-        
+
+    }
+
+    /// <summary>
+    /// jwt 抽象接口类
+    /// </summary>
+    public interface IJwtProvider
+    {
+        /// <summary>
+        /// 根据 用户信息生成token
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        string GetJwtToken(JwtInput input);
+        /// <summary>
+        /// 读取 jwt token
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        JwtOutput ReadJwtToken(string token);
+
+    }
+
+
+
+    /// <summary>
+    /// 生成 jwt token 输入 类
+    /// 直接给一个类便于后续参数拓展
+    /// </summary>
+    public class JwtInput
+    {
+        /// <summary>
+        /// 用户名
+        /// </summary>
+        public string UserName { get; set; }
+    }
+
+    /// <summary>
+    /// 读取jwttoken 输出类
+    /// </summary>
+    public class JwtOutput
+    { 
+      
     }
     /// <summary>
-    /// jwt  helper  model
+    /// jwt 配置读取类  字段名称对应appsetting.json 
+    /// Jwt 节点下的名称
     /// </summary>
     public class JwtToken
     {

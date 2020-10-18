@@ -31,7 +31,15 @@ namespace Zero.Core.WebApi
                     .UseContentRoot(Directory.GetCurrentDirectory())
                     .ConfigureLogging(log =>
                     {
+                        //过滤系统日志内容
+                        log.AddFilter("Microsoft", LogLevel.Warning);
+                        log.AddFilter("System", LogLevel.Warning);
+                        log.AddFilter("LoggingConsoleApp.Program", LogLevel.Warning);
+
                         log.AddConsole();
+                        log.AddDebug();
+                        log.SetMinimumLevel(LogLevel.Warning);
+                        log.AddLog4Net();
                     });
                 });
 

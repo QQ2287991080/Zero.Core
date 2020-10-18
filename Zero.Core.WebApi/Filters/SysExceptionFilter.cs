@@ -26,7 +26,7 @@ namespace Zero.Core.WebApi.Filters
             string errMsg= "Url:" + url + ";Message:" + message + "\r\n InnerException:" + innerException;
             await Task.Run(() => _log.Error("Url:" + url + ";Message:" + message + "\r\n InnerException:" + innerException, error));
             //返回json内容，如果不这样的话，会返回所有的错误信息。
-            context.Result = ResultHelper.Seed(System.Net.HttpStatusCode.BadRequest, errMsg);
+            context.Result = AjaxHelper.Seed(System.Net.HttpStatusCode.BadRequest, errMsg);
         }
     }
 }

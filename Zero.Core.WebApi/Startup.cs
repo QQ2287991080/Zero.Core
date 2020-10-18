@@ -8,8 +8,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using System;
 using System.IO;
 using System.Reflection;
 using Zero.Core.WebApi.Filters;
@@ -17,7 +21,11 @@ using Zero.Core.WebApi.Middlewares;
 using Zero.Core.WebApi.ServiceConfig;
 using Zero.Core.WebApi.ServiceExtensions;
 using Zero.Core.WebApi.StartupExtensions;
-
+#if DEBUG
+//[assembly:ApiController]
+#else
+[assembly:ApiController]
+#endif
 namespace Zero.Core.WebApi
 {
     public class Startup
@@ -41,19 +49,20 @@ namespace Zero.Core.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //程序依赖注入
+            services.AddService();
             #region Framework
-
             //控制器配置
             services.AddControllers()
             #region Newtonsoft Configure
-                .AddNewtonsoftJson(
-                    option =>
-                    {
-                        option.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;//忽略循环引用
-                        option.SerializerSettings.NullValueHandling = NullValueHandling.Include;//是否忽略空值引用
-                        option.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();//驼峰命名
-                        option.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";//时间格式化
-                    });
+            .AddNewtonsoftJson(
+               option =>
+               {
+                   option.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;//忽略循环引用
+                   option.SerializerSettings.NullValueHandling = NullValueHandling.Include;//是否忽略空值引用
+                   option.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();//驼峰命名
+                   option.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";//时间格式化
+               });
             #endregion
             /*
              *httpcontext 引用
@@ -77,8 +86,9 @@ namespace Zero.Core.WebApi
                 //options.Filters.Add(new AuthorizeFilter(policy));
             });
             #endregion
-            //程序依赖注入
-            services.AddService();
+
+            #region Extension
+
             //ef 
             services.AddEfDbContext();
             //swagger
@@ -89,6 +99,7 @@ namespace Zero.Core.WebApi
             services.AddZeroCors();
             //automapper
             services.AddZeroAutoMapper();
+            #endregion
         }
         /// <summary>
         /// autofac 接管 ioc
@@ -99,17 +110,18 @@ namespace Zero.Core.WebApi
             builder.RegisterModule(new AutofacModule());
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
             //this.AutofacContainer = app.ApplicationServices.GetAutofacRoot();
+            //log4  Is't must
+            var lf = loggerFactory.AddLog4Net();
             //请求日志
             app.UseRequestLog();
-            
-          
+
             app.UseRouting();
             //跨域
             app.UseCors(CorsExtension.PolicyName);
@@ -132,7 +144,7 @@ namespace Zero.Core.WebApi
              */
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllers().RequireCors(CorsExtension.PolicyName);
                 //SignalR
             });
             //swagger in  middleware

@@ -10,12 +10,11 @@ using Zero.Core.Services.Base;
 
 namespace Zero.Core.Services
 {
-    public class DictionariesService:BaseService<Dictionaries>,IDictionariesService
+    public class RoleService:BaseService<Role>,IRoleService
     {
-        public DictionariesService(IDictionariesRepository dictionaries )
+        public RoleService(IRoleRepository role)
         {
-            _repository = dictionaries;
+            _repository = role;
         }
-
     }
 }

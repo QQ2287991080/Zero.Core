@@ -15,6 +15,7 @@ namespace Zero.Core.WebApi.ServiceExtensions
     {
         public static IServiceCollection AddSwaggerDocs(this IServiceCollection services)
         {
+
             services.AddSwaggerGen(i =>
             {
 
@@ -24,10 +25,12 @@ namespace Zero.Core.WebApi.ServiceExtensions
                     Title = "Zero.Core.WebApi Docs",
                     Description = "WebApi",
                     TermsOfService = new Uri("https://www.baidu.com"),
-                    Contact = new OpenApiContact { Name = "张力", Email = "2287991080@qq.com" },//联系我
+                    Contact = new OpenApiContact { Name = "Zero", Email = "2287991080@qq.com" },//联系我
                     License = new OpenApiLicense { Name = "博客园", Url = new Uri("https://www.cnblogs.com/aqgy12138/") }//许可
                 });
 
+                //排序规则
+                i.OrderActionsBy((apiDesc) => $"{apiDesc.ActionDescriptor.RouteValues["controller"]}_{apiDesc.HttpMethod}");
                 //i.ResolveConflictingActions(o => o.First());//控制器允许同名重载方法
                 i.EnableAnnotations();//注释
 
@@ -70,6 +73,7 @@ namespace Zero.Core.WebApi.ServiceExtensions
                     i.IncludeXmlComments(xmlPath);//文档中文提示
                 }
             });
+            services.AddSwaggerGenNewtonsoftSupport();
             return services;
         }
     }

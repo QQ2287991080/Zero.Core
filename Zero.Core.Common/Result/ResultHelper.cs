@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Zero.Core.Common.Result
 {
-    public class ResultHelper
+    public class AjaxHelper
     {
         public static JsonResult Seed(HttpStatusCode errCode, string errMsg, object data = null)
         {
