@@ -16,7 +16,7 @@ namespace Zero.Core.WebApi.StartupExtensions
             {
                 //a.DefaultModelExpandDepth(0);
                 //a.DefaultModelRendering(ModelRendering.Example);//返回类型，优先展示方式，默认展示Example
-                //a.DefaultModelsExpandDepth(-1);//用于控制最下面展示的模型，-1是全部隐藏
+                a.DefaultModelsExpandDepth(-1);//用于控制最下面展示的模型，-1是全部隐藏
                 //a.DisplayOperationId();//控制操作列表中操作ID的显示
                 a.DisplayRequestDuration();//控制试用请求的请求持续时间（以毫秒为单位）的显示
                 //a.DocExpansion(DocExpansion.List);//list 展开控制器下的所有接口，Full打开是所有接口的调试界面，None全部收缩,不配置的情况下是list
