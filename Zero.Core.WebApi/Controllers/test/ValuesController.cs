@@ -49,23 +49,23 @@ namespace Zero.Core.WebApi.Controllers.test
         /// 新增
         /// </summary>
         /// <returns></returns>
-        [HttpPost("Add")]
-        public async Task<JsonResult> Add(User user)
-        {
-            //var entity = await _user.AddAsync(new User()
-            //{
+        //[HttpPost("Add")]
+        //public async Task<JsonResult> Add(User user)
+        //{
+        //    //var entity = await _user.AddAsync(new User()
+        //    //{
 
-            //    RealName = "飞天猪皮怪",
-            //    UserName = "Zero",
-            //    Password = "111111",
-            //    Email = "2287991080@qq.com",
-            //    Phone = "15268983151",
-            //    Sex = 1,
-            //    Remark = "ppgod",
-            //    Salt = "xxxx",
-            //});
-            return AjaxHelper.Seed(System.Net.HttpStatusCode.OK, "操作成功");
-        }
+        //    //    RealName = "飞天猪皮怪",
+        //    //    UserName = "Zero",
+        //    //    Password = "111111",
+        //    //    Email = "2287991080@qq.com",
+        //    //    Phone = "15268983151",
+        //    //    Sex = 1,
+        //    //    Remark = "ppgod",
+        //    //    Salt = "xxxx",
+        //    //});
+        //    return AjaxHelper.Seed(System.Net.HttpStatusCode.OK, "操作成功");
+        //}
 
         [HttpGet("query")]
         public JsonResult query(string x)

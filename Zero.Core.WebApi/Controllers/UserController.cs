@@ -3,11 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using Zero.Core.Common.Result;
+using Zero.Core.Common.Units;
+using Zero.Core.Common.User;
 using Zero.Core.Domain.Dtos.User;
 using Zero.Core.IServices;
 
@@ -19,11 +22,17 @@ namespace Zero.Core.WebApi.Controllers
     public class UserController : ControllerBase
     {
         readonly IUserService _useService;
+        readonly IUserProvider _userProvider;
+        readonly IJwtProvider _jwt;
         public UserController(
-            IUserService userService
+            IUserService userService,
+            IUserProvider userProvider,
+            IJwtProvider jwt
             )
         {
             _useService = userService;
+            _userProvider = userProvider;
+            _jwt = jwt;
         }
 
 
@@ -33,18 +42,19 @@ namespace Zero.Core.WebApi.Controllers
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        [HttpPost("Login")]
+        [HttpPost("Login"),AllowAnonymous]
         public async Task<JsonResult> Login(LoginDto dto )
         {
 
-            return AjaxHelper.Seed(System.Net.HttpStatusCode.OK, "");
+            var token = _jwt.GetJwtToken(new JwtInput() { UserName = dto.UserName });
+            return AjaxHelper.Seed(System.Net.HttpStatusCode.OK, "", new { token });
         }
         /// <summary>
         /// 用户登出
         /// </summary>
         /// <param name="userName"></param>
         /// <returns></returns>
-        [HttpGet("LoginOut")]
+        [HttpGet("LoginOut"),Authorize]
         public async Task<JsonResult> LoginOut(string userName)
         {
             return AjaxHelper.Seed(System.Net.HttpStatusCode.OK, "");

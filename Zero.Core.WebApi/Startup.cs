@@ -2,9 +2,11 @@ using Autofac;
 using log4net;
 using log4net.Config;
 using log4net.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -83,7 +85,7 @@ namespace Zero.Core.WebApi
                 //var policy = new AuthorizationPolicyBuilder()
                 //.RequireAuthenticatedUser()
                 //.Build();
-                //options.Filters.Add(new AuthorizeFilter(policy));
+                options.Filters.Add(new AuthorizeFilter());
             });
             #endregion
 

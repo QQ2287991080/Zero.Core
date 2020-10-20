@@ -35,6 +35,8 @@ namespace Zero.Core.WebApi.Middlewares
                 var host = request.Host.ToUriComponent();//ip+端口
                 //var query = request.QueryString.ToUriComponent();//请求参数
 
+                var author = request.Headers["Authorization"];
+
                 var method = request.Method;
                 string parameter = "";
                 switch (method)
