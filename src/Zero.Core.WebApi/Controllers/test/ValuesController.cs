@@ -29,6 +29,7 @@ namespace Zero.Core.WebApi.Controllers.test
             _user = user;
             _provider = provider;
         }
+        
         [HttpGet("TestUserProvider")]
         public JsonResult TestUserProvider()
         {

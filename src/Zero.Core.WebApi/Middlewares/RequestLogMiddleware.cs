@@ -45,6 +45,7 @@ namespace Zero.Core.WebApi.Middlewares
                         parameter = request.QueryString.ToUriComponent();
                         break;
                     case "POST":
+                        if (request.ContentType == null) break;
                         //form 表单
                         if (request.ContentType.Contains("application/x-www-form-urlencoded"))
                         {

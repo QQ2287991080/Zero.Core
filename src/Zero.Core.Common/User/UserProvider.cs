@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Zero.Core.Common.Helper;
 using Zero.Core.Common.Redis;
+using Zero.Core.Common.Units;
 
 namespace Zero.Core.Common.User
 {
@@ -14,30 +15,30 @@ namespace Zero.Core.Common.User
     {
         readonly IHttpContextAccessor _accessor;
         readonly HttpContext _context;
-        public UserProvider(IHttpContextAccessor accessor)
+        readonly IJwtProvider _jwt;
+        public UserProvider(
+            IHttpContextAccessor accessor,
+            IJwtProvider jwt
+            )
         {
             _accessor = accessor ??
                 throw new ArgumentNullException($"{typeof(IHttpContextAccessor)} cannot  null!");
 
             //httpcontext
-            _context = _accessor.HttpContext;
+            _context = _accessor.HttpContext ?? throw new ArgumentNullException($"{typeof(HttpContext)} cannot null in {typeof(UserProvider)}");
+            //jwt
+            _jwt = jwt;
         }
 
         public string UserName => _context.User.Identity.Name ?? "";
 
-
-        public bool Refresh(string token)
+        public JwtOutput CreateJwtToken(JwtInput input)
         {
-            return true;
-        }
-
-        public async Task Clear()
-        {
-            var redisToken = await RedisHelper.StringGetAsync(Token);
-            if (!string.IsNullOrEmpty(redisToken))
+            if (input == null)
             {
-                await RedisHelper.KeyDeleteAsync(Token);
+                throw new ArgumentNullException("input cannot null");
             }
+            return _jwt.GetJwtToken(input);
         }
 
         public async Task<bool> SetToken(string userName,string token,TimeSpan? expiry=null)
@@ -45,7 +46,34 @@ namespace Zero.Core.Common.User
             return await RedisHelper.StringSetAsync(token, userName, expiry);
         }
 
-        public string Token => GetToken();
+        public string Token
+        {
+            get
+            {
+                if (_context.Request.Headers.ContainsKey("Authorization"))
+                {
+                    var author = _context.Request.Headers["Authorization"];
+                    if (!author.IsNullOrEmpty())
+                    {
+                        return author.ToString().Split(' ')[1];
+                    }
+                }
+                return "";
+            }
+        }
+
+        public string GetToken(IHeaderDictionary headers)
+        {
+            if (headers.ContainsKey("Authorization"))
+            {
+                var author = headers["Authorization"];
+                if (!string.IsNullOrEmpty(author))
+                {
+                    return author.ToString().Split(' ')[1];
+                }
+            }
+            return "";
+        }
         public string GetToken()
         {
             if (_context.Request.Headers.ContainsKey("Authorization"))
@@ -57,6 +85,15 @@ namespace Zero.Core.Common.User
                 }
             }
             return "";
+        }
+        public bool Refresh(string token)
+        {
+            return true;
+        }
+
+        public async Task Clear()
+        {
+            await RedisHelper.KeyDeleteAsync(Token);
         }
         private string GetUserName()
         {

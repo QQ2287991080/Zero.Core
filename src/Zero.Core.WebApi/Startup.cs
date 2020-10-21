@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -18,6 +20,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.IO;
 using System.Reflection;
+using Zero.Core.Common.User;
 using Zero.Core.WebApi.Filters;
 using Zero.Core.WebApi.Middlewares;
 using Zero.Core.WebApi.ServiceConfig;
@@ -51,6 +54,12 @@ namespace Zero.Core.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            /*
+            *httpcontext 引用
+            *https://docs.microsoft.com/zh-cn/aspnet/core/fundamentals/http-context?view=aspnetcore-3.1
+            *IHttpContextAccessor
+            */
+            services.AddHttpContextAccessor();
             //程序依赖注入
             services.AddService();
             #region Framework
@@ -66,12 +75,7 @@ namespace Zero.Core.WebApi
                    option.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";//时间格式化
                });
             #endregion
-            /*
-             *httpcontext 引用
-             *https://docs.microsoft.com/zh-cn/aspnet/core/fundamentals/http-context?view=aspnetcore-3.1
-             *IHttpContextAccessor
-             */
-            services.AddHttpContextAccessor();
+           
             /*
              *为控制器添加拦截器或验证等
              */
@@ -81,11 +85,19 @@ namespace Zero.Core.WebApi
                 options.Filters.Add(typeof(SysExceptionFilter));
                 //限制响应数据格式
                 options.Filters.Add(new ProducesAttribute("application/json"));
+                //身份验证判断
+                var build = services.BuildServiceProvider();
+                //获取实例
+                var userProvider = build.GetService(typeof(IUserProvider)) as IUserProvider;
+                options.Conventions.Add(new CustomAuthorizeFilter(userProvider));
+                //options.Filters.Add(typeof(AuthorizationFilter));
+                //添加身份验证特性
+                //options.Filters.Add(typeof(AuthorizeAttribute));
                 //全局添加授权认证
                 //var policy = new AuthorizationPolicyBuilder()
                 //.RequireAuthenticatedUser()
                 //.Build();
-                options.Filters.Add(new AuthorizeFilter());
+                //options.Filters.Add(new AuthorizeFilter());
             });
             #endregion
 

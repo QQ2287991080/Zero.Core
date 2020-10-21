@@ -15,7 +15,7 @@ namespace Zero.Core.Common.Units
     /// </summary>
     public  class JwtHelper: IJwtProvider
     {
-        public string GetJwtToken(JwtInput input)
+        public JwtOutput GetJwtToken(JwtInput input)
         {
             string userName = input.UserName;
             var claims = new[]
@@ -28,17 +28,18 @@ namespace Zero.Core.Common.Units
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt.SecurityKey));
             //生成凭证 ，根据密钥生成
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var time = DateTime.Today.AddDays(jwt.Time);
             //写入token配置
             var token = new JwtSecurityToken(
                 issuer: jwt.ValidIssuer,
                 audience: jwt.ValidAudience,
                 claims: claims,
-                expires: DateTime.Today.AddDays(jwt.Time),
+                expires: time,
                 signingCredentials: creds
             );
             //生成 token
             string access_token = new JwtSecurityTokenHandler().WriteToken(token);
-            return access_token;
+            return new JwtOutput(access_token, userName, TimeSpan.FromDays(jwt.Time));
         }
 
 
@@ -65,7 +66,7 @@ namespace Zero.Core.Common.Units
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        string GetJwtToken(JwtInput input);
+        JwtOutput GetJwtToken(JwtInput input);
         /// <summary>
         /// 读取 jwt token
         /// </summary>
@@ -93,8 +94,20 @@ namespace Zero.Core.Common.Units
     /// 读取jwttoken 输出类
     /// </summary>
     public class JwtOutput
-    { 
-      
+    {
+        public JwtOutput(string token,string userName,TimeSpan? time)
+        {
+            this.Token = token;
+            this.UserName = userName;
+            this.Time = time;
+        }
+        public JwtOutput() : this("", "", null)
+        {
+
+        }
+        public string Token { get; }
+        public string UserName { get;}
+        public TimeSpan? Time { get; }
     }
     /// <summary>
     /// jwt 配置读取类  字段名称对应appsetting.json 
