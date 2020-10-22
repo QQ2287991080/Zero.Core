@@ -8,7 +8,7 @@ using Zero.Core.IServices.Base;
 
 namespace Zero.Core.IServices
 {
-    public interface IDictionariesService:IBaseService<Dictionaries>
+    public interface IDictionariesService:IBaseService<Dictionaries>, ISupportService
     {
         
     }

@@ -8,7 +8,7 @@ using Zero.Core.IServices.Base;
 
 namespace Zero.Core.IServices
 {
-    public interface IRoleService:IBaseService<Role>
+    public interface IRoleService:IBaseService<Role>,ISupportService
     {
         
     }

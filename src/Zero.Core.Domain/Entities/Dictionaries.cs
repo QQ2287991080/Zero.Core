@@ -7,6 +7,9 @@ using Zero.Core.Domain.Entities.Base;
 
 namespace Zero.Core.Domain.Entities
 {
+    /// <summary>
+    /// 可维护类型表
+    /// </summary>
     public class Dictionaries:Entity
     {
         /// <summary>

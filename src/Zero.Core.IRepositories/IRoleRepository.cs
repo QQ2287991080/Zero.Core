@@ -10,6 +10,11 @@ namespace Zero.Core.IRepositories
 {
     public interface IRoleRepository:IRepository<Role>
     {
-        
+        /// <summary>
+        /// 获取角色id
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        Task<IEnumerable<int>> GetRoleIds(int userId);
     }
 }

@@ -7,6 +7,9 @@ using Zero.Core.Domain.Entities.Base;
 
 namespace Zero.Core.Domain.Entities
 {
+    /// <summary>
+    /// 角色表
+    /// </summary>
     public class Role:Entity
     {
         /// <summary>

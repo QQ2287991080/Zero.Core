@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Zero.Core.Domain.Entities.Base;
 using Zero.Core.Domain.Enums;
 
-namespace Zero.Core.Domain.Entities
+namespace Zero.Core.Domain.Dtos.Menu
 {
-    /// <summary>
-    /// 菜单表
-    /// </summary>
-    public class Menu:Entity
+
+    public class OutputMenu:Entity
     {
         /// <summary>
         /// 菜单名称
@@ -47,9 +44,10 @@ namespace Zero.Core.Domain.Entities
         /// </summary>
         public int? IdParent { get; set; }
 
-        public ICollection<RoleMenu> RoleMenus { get; set; }
+        /// <summary>
+        /// 子菜单
+        /// </summary>
+        public List<OutputMenu> Childrens { get; set; }
 
-        
-      
     }
 }

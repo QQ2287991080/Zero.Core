@@ -34,8 +34,6 @@ namespace Zero.Core.WebApi.Controllers.test
         public JsonResult TestUserProvider()
         {
             //string userName = _provider.UserName();
-            _user.UserName();
-            _user.Info();
             return AjaxHelper.Seed(System.Net.HttpStatusCode.OK, "成功");
         }
 

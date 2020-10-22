@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>Zero.Core.WebApi</AssemblyName>
     <RootNamespace>Zero.Core.WebApi</RootNamespace>
+    <UserSecretsId>79626410-ff2b-45c5-a195-70ddc2b1c929</UserSecretsId>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\Debug\netcoreapp3.1\Zero.Core.WebApi.xml</DocumentationFile>

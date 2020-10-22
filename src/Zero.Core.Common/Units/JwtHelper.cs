@@ -20,7 +20,8 @@ namespace Zero.Core.Common.Units
             string userName = input.UserName;
             var claims = new[]
             {
-              new Claim(ClaimTypes.Name, userName)
+              new Claim(ClaimTypes.Name, userName),
+              new Claim(ClaimTypes.Authentication,"Zero.Code")
             };
             //读取jwt 配置
             var jwt = AppsettingHelper.Get<JwtToken>("JWT");
@@ -34,6 +35,7 @@ namespace Zero.Core.Common.Units
                 issuer: jwt.ValidIssuer,
                 audience: jwt.ValidAudience,
                 claims: claims,
+                notBefore:DateTime.Now,
                 expires: time,
                 signingCredentials: creds
             );

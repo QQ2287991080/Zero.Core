@@ -25,7 +25,8 @@ namespace Zero.Core.Common.User
                 throw new ArgumentNullException($"{typeof(IHttpContextAccessor)} cannot  null!");
 
             //httpcontext
-            _context = _accessor.HttpContext ?? throw new ArgumentNullException($"{typeof(HttpContext)} cannot null in {typeof(UserProvider)}");
+            _context = _accessor.HttpContext;
+            //_context = _accessor.HttpContext ?? throw new ArgumentNullException($"{typeof(HttpContext)} cannot null in {typeof(UserProvider)}");
             //jwt
             _jwt = jwt;
         }
@@ -53,7 +54,7 @@ namespace Zero.Core.Common.User
                 if (_context.Request.Headers.ContainsKey("Authorization"))
                 {
                     var author = _context.Request.Headers["Authorization"];
-                    if (!author.IsNullOrEmpty())
+                    if (!string.IsNullOrEmpty(author))
                     {
                         return author.ToString().Split(' ')[1];
                     }

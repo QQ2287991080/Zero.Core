@@ -14,6 +14,7 @@ namespace Zero.Core.EfCore.EntityConfigs
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.SetEntityConfig();
+            builder.HasIndex(a => a.UserName).IsUnique();//唯一索引
             builder.Property(a => a.UserName).HasMaxLength(200).IsRequired();
             builder.Property(a => a.RealName).HasMaxLength(200).IsRequired();
             builder.Property(a => a.Password).IsRequired();

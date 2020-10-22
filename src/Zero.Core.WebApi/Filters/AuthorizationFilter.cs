@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Collections.Generic;
@@ -68,7 +69,10 @@ namespace Zero.Core.WebApi.Filters
             //如果接口没有使用特性，就加上我的自定义身份证认证过滤器
             if (!action.Attributes.Any(a => a is AllowAnonymousAttribute))
             {
-                action.Filters.Add(new AuthorizationFilter(_userProvider));
+                if (!action.Controller.Attributes.Any(a => a is AllowAnonymousAttribute))
+                {
+                    action.Filters.Add(new AuthorizationFilter(_userProvider));
+                }
             }
         }
     }

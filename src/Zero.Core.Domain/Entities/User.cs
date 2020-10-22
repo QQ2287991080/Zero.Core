@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,6 +8,9 @@ using Zero.Core.Domain.Entities.Base;
 
 namespace Zero.Core.Domain.Entities
 {
+    /// <summary>
+    /// 用户表
+    /// </summary>
     public class User:Entity
     {
         /// <summary>
@@ -45,7 +49,10 @@ namespace Zero.Core.Domain.Entities
         /// 性别
         /// </summary>
         public int Sex { get; set; }
-
+        /// <summary>
+        /// 头像
+        /// </summary>
+        public string Avatar { get; set; }
         public ICollection<UserRole> UserRoles { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,16 @@ namespace Zero.Core.Repositories
 {
     public class RoleRepository : Repository<Role>, IRoleRepository
     {
+        readonly IUnitOfWork _unit;
         public RoleRepository(IUnitOfWork unit) : base(unit)
         {
+            _unit = unit;
+        }
 
+        public async Task<IEnumerable<int>> GetRoleIds(int userId)
+        {
+            var roles = await _unit.DbContext.UserRoles.Where(w => w.UserId == userId).ToListAsync();
+            return roles.Select(s => s.RoleId);
         }
     }
 }

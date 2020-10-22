@@ -3,15 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Zero.Core.Domain.Dtos.Menu;
 using Zero.Core.Domain.Entities;
 
 namespace Zero.Core.Domain.Dtos.User
 {
-    public class UserDto
-    {
-        
-    }
 
+    /// <summary>
+    /// 用户列表
+    /// </summary>
+    public class UserCondition:PageCondition
+    {
+        /// <summary>
+        /// 用户名
+        /// </summary>
+        public string UserName { get; set; }
+        /// <summary>
+        /// 手机号
+        /// </summary>
+        public string Phone { get; set; }
+    }
+    /// <summary>
+    /// 用户登录
+    /// </summary>
     public class LoginDto
     {
         /// <summary>
@@ -31,25 +45,16 @@ namespace Zero.Core.Domain.Dtos.User
         public string UserName { get; set; }
     }
 
-
-    public class OutUserModel
+    public class UserInfo
     {
-        /// <summary>
-        /// 用户凭证
-        /// </summary>
-        public string Token { get; set; }
-        /// <summary>
-        /// 权限列表
-        /// </summary>
-        public IEnumerable<string> Permission { get; set; }
         /// <summary>
         /// 菜单权限
         /// </summary>
-        public IEnumerable<Menu> Menu { get; set; }
+        public IEnumerable<OutputMenu> Menu { get; set; }
         /// <summary>
         /// 用户id
         /// </summary>
-        public Guid UserId { get; set; }
+        public int UserId { get; set; }
         /// <summary>
         /// 用户名
         /// </summary>
@@ -62,5 +67,9 @@ namespace Zero.Core.Domain.Dtos.User
         /// 头像
         /// </summary>
         public string Avatar { get; set; }
+        /// <summary>
+        /// 签名
+        /// </summary>
+        public string Remark { get; set; }
     }
 }

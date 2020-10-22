@@ -7,6 +7,9 @@ using Zero.Core.Domain.Entities.Base;
 
 namespace Zero.Core.Domain.Entities
 {
+    /// <summary>
+    /// 用户角色表
+    /// </summary>
     public class UserRole:Entity
     {
         public User User { get; set; }

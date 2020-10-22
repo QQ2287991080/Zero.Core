@@ -7,6 +7,9 @@ using Zero.Core.Domain.Entities.Base;
 
 namespace Zero.Core.Domain.Entities
 {
+    /// <summary>
+    /// 角色菜单表
+    /// </summary>
     public class RoleMenu:Entity
     {
         /// <summary>
