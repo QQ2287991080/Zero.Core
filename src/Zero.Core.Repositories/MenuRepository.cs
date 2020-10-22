@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,15 @@ namespace Zero.Core.Repositories
 {
     public class MenuRepository : Repository<Menu>, IMenuRepository
     {
-       readonly IUnitOfWork _unit;
-        public MenuRepository(IUnitOfWork unit) : base(unit)
+        readonly IUnitOfWork _unit;
+        readonly IMapper _mapper;
+        public MenuRepository(
+            IUnitOfWork unit,
+            IMapper mapper
+            ) : base(unit)
         {
             _unit = unit;
+            _mapper = mapper;
         }
 
         public async Task<List<OutputMenu>> GetRolesMenu(IEnumerable<int> roleIds)
@@ -47,7 +53,7 @@ namespace Zero.Core.Repositories
             foreach (var item in parents)
             {
                 var children = menus.Where(w => w.IdParent == item.Id);
-                var output = new OutputMenu();
+                var output = _mapper.Map<OutputMenu>(item);
                 if (children.Count()>0)
                 {
                     output.Childrens = ResolveMenu(menus, item.Id);
