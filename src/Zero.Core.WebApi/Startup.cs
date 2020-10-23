@@ -4,7 +4,9 @@ using log4net.Config;
 using log4net.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.AspNetCore.Mvc.Authorization;
@@ -85,12 +87,14 @@ namespace Zero.Core.WebApi
                 options.Filters.Add(typeof(SysExceptionFilter));
                 //限制响应数据格式
                 options.Filters.Add(new ProducesAttribute("application/json"));
+                //ip限制
+                //options.Filters.Add(typeof(IpLimitFilter));
                 //身份验证判断
                 var build = services.BuildServiceProvider();
                 //获取实例
                 var userProvider = build.GetService(typeof(IUserProvider)) as IUserProvider;
                 options.Conventions.Add(new CustomAuthorizeFilter(userProvider));
-                //options.Filters.Add(typeof(AuthorizationFilter));
+                options.Filters.Add(typeof(AuthorizationFilter));
                 //添加身份验证特性
                 //options.Filters.Add(typeof(AuthorizeAttribute));
                 //全局添加授权认证
@@ -130,11 +134,18 @@ namespace Zero.Core.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+            //中间件错误捕获
+            app.UseExceptionHandler(new ExceptionHandlerOptions
+            {
+                ExceptionHandler = new ExceptionMiddleware().Invoke
+            });
             //this.AutofacContainer = app.ApplicationServices.GetAutofacRoot();
             //log4  Is't must
-            var lf = loggerFactory.AddLog4Net();
+            loggerFactory.AddLog4Net();
             //请求日志
             app.UseRequestLog();
+            //ip 限制
+            app.UseIpLimit();
 
             app.UseRouting();
             //跨域

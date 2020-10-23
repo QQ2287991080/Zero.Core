@@ -96,10 +96,5 @@ namespace Zero.Core.Common.User
         {
             await RedisHelper.KeyDeleteAsync(Token);
         }
-        private string GetUserName()
-        {
-            string userName = _context.User.Identity.Name ?? "";
-            return userName;
-        }
     }
 }

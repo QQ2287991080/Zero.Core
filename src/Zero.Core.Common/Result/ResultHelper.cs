@@ -44,6 +44,13 @@ namespace Zero.Core.Common.Result
             };
             return new JsonResult(result);
         }
+
+        public class Result
+        {
+            public string ErrMsg { get; set; }
+            public HttpStatusCode ErrCode { get; set; }
+            public object Data { get; set; }
+        }
     }
     /// <summary>
     /// 错误码
@@ -59,10 +66,5 @@ namespace Zero.Core.Common.Result
         [Description("未授权")]
         Unauthorized=401
     }
-    public class Result
-    {
-        public string ErrMsg { get; set; }
-        public HttpStatusCode ErrCode { get; set; }
-        public object Data { get; set; }
-    }
+   
 }

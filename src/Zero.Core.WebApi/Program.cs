@@ -33,6 +33,7 @@ namespace Zero.Core.WebApi
                     {
                         //过滤系统日志内容
                         log.AddFilter("Microsoft", LogLevel.Warning);
+                        log.AddFilter("Microsoft.Hosting.Lifetime", LogLevel.Information);
                         log.AddFilter("System", LogLevel.Warning);
                         log.AddFilter("LoggingConsoleApp.Program", LogLevel.Warning);
 

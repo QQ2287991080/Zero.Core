@@ -158,7 +158,7 @@ namespace Zero.Core.Common.Redis
         /// <param name="value"></param>
         /// <param name="expiry"></param>
         /// <returns></returns>
-        public static async Task<T> StringGetAsync<T>(string key, T value, TimeSpan? expiry = null)
+        public static async Task<T> StringGetAsync<T>(string key)
         {
             string json = await Do(d => d.StringGetAsync(key));
             return Deserialize<T>(json);
