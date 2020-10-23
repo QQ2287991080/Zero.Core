@@ -24,6 +24,18 @@ namespace Zero.Core.WebApi.Controllers
         {
             _menu = menu;
         }
+
+        /// <summary>
+        /// 返回所有可用菜单，用于角色权限操作
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetAllMenu")]
+        public async Task<JsonResult> GetAllMenu()
+        {
+            var list = await _menu.GetAllAsync(w => w.IsAllow == true);
+            var data = list.Select(s => new { s.Id, s.Name });
+            return AjaxHelper.Seed(Ajax.Ok, data);
+        }
         /// <summary>
         /// 获取菜单树
         /// </summary>

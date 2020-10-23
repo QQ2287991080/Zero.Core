@@ -14,4 +14,16 @@ namespace Zero.Core.Domain.Dtos.Role
         public string Name { get; set; }
     }
 
+
+    public class CheckPermission
+    {
+        /// <summary>
+        /// 菜单信息
+        /// </summary>
+        public List<int> MenuIds { get; set; }
+        /// <summary>
+        /// 角色id
+        /// </summary>
+        public int RoleId { get; set; }
+    }
 }

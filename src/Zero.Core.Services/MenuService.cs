@@ -35,5 +35,7 @@ namespace Zero.Core.Services
             var menus = await base.GetAllAsync(w => w.IsAllow == true);
             return _menu.ResolveMenu(menus);
         }
+
+
     }
 }
