@@ -28,15 +28,15 @@ namespace Zero.Core.WebApi.Middlewares
         }
         public async Task Invoke(HttpContext httpContext)
         {
+            //获取客户端ip
+            var ipAddress = httpContext.Connection.RemoteIpAddress;
             var request = httpContext.Request;
             var path = request.Path.ToUriComponent();//请求的控制器和方法
             if (!path.Contains("swagger"))
             {
                 var host = request.Host.ToUriComponent();//ip+端口
                 //var query = request.QueryString.ToUriComponent();//请求参数
-
-                var author = request.Headers["Authorization"];
-
+                //请求方式
                 var method = request.Method;
                 string parameter = "";
                 switch (method)
@@ -74,7 +74,7 @@ namespace Zero.Core.WebApi.Middlewares
                     default:
                         break;
                 }
-                _logger.Warn($"【Host】{host}，【路由】{path}，【请求参数】{parameter}");
+                _logger.Warn($"【ClientIP】{ipAddress?.ToString()}【Host】{host}，【路由】{path}，【请求参数】{parameter}");
             }
             await _next(httpContext);
         }
