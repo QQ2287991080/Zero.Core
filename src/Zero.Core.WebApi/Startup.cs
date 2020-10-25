@@ -29,7 +29,7 @@ using Zero.Core.WebApi.ServiceConfig;
 using Zero.Core.WebApi.ServiceExtensions;
 using Zero.Core.WebApi.StartupExtensions;
 #if DEBUG
-//[assembly:ApiController]
+[assembly:ApiController]
 #else
 [assembly:ApiController]
 #endif
@@ -90,11 +90,12 @@ namespace Zero.Core.WebApi
                 //ip限制
                 //options.Filters.Add(typeof(IpLimitFilter));
                 //身份验证判断
-                var build = services.BuildServiceProvider();
+                //var build = services.BuildServiceProvider();
                 //获取实例
-                var userProvider = build.GetService(typeof(IUserProvider)) as IUserProvider;
-                options.Conventions.Add(new CustomAuthorizeFilter(userProvider));
-                options.Filters.Add(typeof(AuthorizationFilter));
+                //var userProvider = build.GetService(typeof(IUserProvider)) as IUserProvider;
+                //options.Conventions.Add(new CustomAuthorizeFilter(userProvider));
+
+                //options.Filters.Add(typeof(AuthorizationFilter));
                 //添加身份验证特性
                 //options.Filters.Add(typeof(AuthorizeAttribute));
                 //全局添加授权认证

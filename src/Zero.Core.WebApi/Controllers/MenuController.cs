@@ -84,7 +84,7 @@ namespace Zero.Core.WebApi.Controllers
             var info = await _menu.FirstAsync(f => f.Id == menu.Id);
             if (info == null)
                 return AjaxHelper.Seed(Ajax.Bad, "菜单已不存在，请刷新！");
-            if (await _menu.IsExistsMenuName(menu.Name))
+            if (await _menu.IsExistsMenuName(menu.Name,menu.Id))
                 return AjaxHelper.Seed(Ajax.Bad, "菜单名称已存在");
             await _menu.UpdateAsync(menu);
             return AjaxHelper.Seed(Ajax.Ok);

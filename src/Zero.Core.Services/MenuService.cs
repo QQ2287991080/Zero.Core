@@ -32,7 +32,7 @@ namespace Zero.Core.Services
 
         public async Task<List<OutputMenu>> MenuTrees()
         {
-            var menus = await base.GetAllAsync(w => w.IsAllow == true);
+            var menus = await base.GetAllAsync();
             return _menu.ResolveMenu(menus);
         }
 
