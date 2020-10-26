@@ -48,9 +48,13 @@ namespace Zero.Core.Domain.Dtos.User
     public class UserInfo
     {
         /// <summary>
-        /// 菜单权限
+        /// 菜单
         /// </summary>
         public IEnumerable<OutputMenu> Menu { get; set; }
+        /// <summary>
+        /// 权限
+        /// </summary>
+        public IEnumerable<string> PermissionCode { get; set; }
         /// <summary>
         /// 用户id
         /// </summary>

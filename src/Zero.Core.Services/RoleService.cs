@@ -16,10 +16,18 @@ namespace Zero.Core.Services
     public class RoleService:BaseService<Role>,IRoleService
     {
         readonly IRoleRepository _role;
-        public RoleService(IRoleRepository role)
+        readonly IMenuRepository _menu;
+        readonly IPermissionRepository _permission;
+        public RoleService(
+            IRoleRepository role,
+            IMenuRepository menu,
+            IPermissionRepository permission
+            )
         {
             _repository = role;
             _role = role;
+            _menu = menu;
+            _permission = permission;
         }
 
 
@@ -32,16 +40,33 @@ namespace Zero.Core.Services
             return new ListResult<Role>(condition.PageIndex, condition.PageSize, result.Item1, result.Item2);
         }
 
+        public async Task<List<IdName>> LoadMenuPermission()
+        {
+            //菜单
+            var menus = await _menu.GetAllAsync(w => w.IsAllow == true, ob => ob.Sort, true);
+            //权限
+            var permissions = await _permission.GetAllAsync(w => menus.Select(s => s.Id).Contains(w.MenuId));
+            List<IdName> names = new List<IdName>();
+            //循环遍历所有菜单
+            foreach (var item in menus)
+            {
+                IdName name = new IdName();
+                name.Id = item.Id;
+                name.Name = item.Name;
+                name.Children = permissions
+                    .Where(w => w.MenuId == item.Id)
+                    .Select(s => new IdName { Id = s.Id, Name = s.Name })
+                    .ToList();
+            }
+            return names;
+        }
 
         public async Task CheckMenu(CheckPermission check)
         {
-            if (check.MenuIds.IsNullOrEmpty())
-            {
-                await _role.RemoveMenu(check);
-            }
+            await _role.RemoveMenu(check);
         }
 
-        public async Task<List<int>> GetRoleExistsMenu(int roleId)
+        public async Task<ExistsMenu> GetRoleExistsMenu(int roleId)
         {
             return await _role.ExistsMenu(roleId);
         }

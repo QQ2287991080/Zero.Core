@@ -14,9 +14,7 @@ namespace Zero.Core.WebApi.ServiceExtensions
         public static IServiceCollection AddZeroAutoMapper(this IServiceCollection services)
         {
             //IConfigurationProvider
-            var assembly = Assembly.LoadFile(AppContext.BaseDirectory + "Zero.Core.WebApi.dll");
-
-
+            //var assembly = Assembly.LoadFile(AppContext.BaseDirectory + "Zero.Core.WebApi.dll");
             var assembly2 = Assembly.GetExecutingAssembly();
             services.AddAutoMapper(assembly2);
             return services;

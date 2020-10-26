@@ -65,7 +65,7 @@ namespace Zero.Core.Repositories.Base
         {
             if (_transaction == null)
             {
-                await DbContext.Database.BeginTransactionAsync();
+                _transaction = await DbContext.Database.BeginTransactionAsync();
             }
         }
         public async Task CommitAsync()

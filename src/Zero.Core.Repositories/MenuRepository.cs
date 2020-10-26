@@ -26,16 +26,12 @@ namespace Zero.Core.Repositories
             _mapper = mapper;
         }
 
-        public async Task<List<OutputMenu>> GetRolesMenu(IEnumerable<int> roleIds)
+        public async Task<List<RoleMenu>> GetRolesMenu(IEnumerable<int> roleIds)
         {
             var refMenus =await  _unit.DbContext.RoleMenus
                 .Where(w => roleIds.Contains(w.RoleId))
                 .ToListAsync();
-            //角色信息
-            var menus = await base.
-                GetAllAsync(w => refMenus.Select(s => s.MenuId).Contains(w.Id) && w.IsAllow == true);
-            //菜单id
-            return ResolveMenu(menus);
+            return refMenus;
         }
 
 

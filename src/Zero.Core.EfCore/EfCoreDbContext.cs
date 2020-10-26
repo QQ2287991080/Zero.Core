@@ -5,10 +5,10 @@ using Zero.Core.EfCore.EntityConfigs;
 
 namespace Zero.Core.EfCore
 {
-    public class EfCoreDbContext:DbContext
+    public class EfCoreDbContext : DbContext
     {
         //readonly DbContextOptions<EfCoreDbContext> _options;
-        public EfCoreDbContext(DbContextOptions<EfCoreDbContext> options):base(options)
+        public EfCoreDbContext(DbContextOptions<EfCoreDbContext> options) : base(options)
         {
             //_options = options;
         }
@@ -25,11 +25,13 @@ namespace Zero.Core.EfCore
         }
 
 
-        public DbSet<User> Users{ get; set; }
-        public DbSet<UserRole>  UserRoles { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Menu> Menus { get; set; }
-        public DbSet<RoleMenu>  RoleMenus { get; set; }
+        public DbSet<RoleMenu> RoleMenus { get; set; }
         public DbSet<Dictionaries> Dictionaries { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
+        public DbSet<RolePermission> RolePermissions { get; set; }
     }
 }

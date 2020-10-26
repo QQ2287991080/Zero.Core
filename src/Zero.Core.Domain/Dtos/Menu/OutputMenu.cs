@@ -49,5 +49,19 @@ namespace Zero.Core.Domain.Dtos.Menu
         /// </summary>
         public List<OutputMenu> Childrens { get; set; }
 
+        public static void Resolver(IEnumerable<OutputMenu> treeNodes, OutputMenu model)
+        {
+            var nodes = treeNodes.Where(p => p.IdParent == model.Id);
+            if (nodes == null || nodes.Count() == 0)
+            {
+                model.Childrens = null;
+            }
+            model.Childrens = new List<OutputMenu>();
+            foreach (var item in nodes.OrderBy(o => o.Sort))
+            {
+                model.Childrens.Add(item);
+                Resolver(treeNodes, item);
+            }
+        }
     }
 }

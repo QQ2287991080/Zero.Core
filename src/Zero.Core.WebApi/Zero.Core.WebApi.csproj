@@ -5,13 +5,14 @@
     <AssemblyName>Zero.Core.WebApi</AssemblyName>
     <RootNamespace>Zero.Core.WebApi</RootNamespace>
     <UserSecretsId>79626410-ff2b-45c5-a195-70ddc2b1c929</UserSecretsId>
+
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netcoreapp3.1\Zero.Core.WebApi.xml</DocumentationFile>
+    <DocumentationFile>\Zero.Core.WebApi.xml</DocumentationFile>
     <NoWarn>1701;1702;1705;1591</NoWarn>
     <OutputPath></OutputPath>
   </PropertyGroup>
-
+  
   <ItemGroup>
     <PackageReference Include="Autofac" Version="6.0.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.0.2" />

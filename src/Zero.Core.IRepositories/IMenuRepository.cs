@@ -16,7 +16,7 @@ namespace Zero.Core.IRepositories
         /// </summary>
         /// <param name="roleIds"></param>
         /// <returns></returns>
-        Task<List<OutputMenu>> GetRolesMenu(IEnumerable<int> roleIds);
+        Task<List<RoleMenu>> GetRolesMenu(IEnumerable<int> roleIds);
         /// <summary>
         /// 递归菜单
         /// </summary>

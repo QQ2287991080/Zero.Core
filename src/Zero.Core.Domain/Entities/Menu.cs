@@ -48,8 +48,10 @@ namespace Zero.Core.Domain.Entities
         public int? IdParent { get; set; }
 
         public ICollection<RoleMenu> RoleMenus { get; set; }
+        /// <summary>
+        /// 集合导航属性
+        /// </summary>
+        public List<Permission>  Permissions { get; set; }
 
-        
-      
     }
 }

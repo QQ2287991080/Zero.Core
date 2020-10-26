@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Zero.Core.EfCore;
 
 namespace Zero.Core.EfCore.Migrations
 {
     [DbContext(typeof(EfCoreDbContext))]
-    partial class EfCoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201026024521_mig202010261045")]
+    partial class mig202010261045
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -160,6 +162,9 @@ namespace Zero.Core.EfCore.Migrations
 
                     b.HasIndex("MenuId");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("T_Permission");
                 });
 
@@ -227,36 +232,6 @@ namespace Zero.Core.EfCore.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("T_RoleMenu");
-                });
-
-            modelBuilder.Entity("Zero.Core.Domain.Entities.RolePermission", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeleteTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDelete")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifyTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Pid")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("T_RolePermission");
                 });
 
             modelBuilder.Entity("Zero.Core.Domain.Entities.User", b =>

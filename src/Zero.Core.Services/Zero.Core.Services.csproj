@@ -11,6 +11,10 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath>..\Zero.Core.WebApi\bin\Release\</OutputPath>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.0.0" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Zero.Core.Common\Zero.Core.Common.csproj" />
     <ProjectReference Include="..\Zero.Core.IRepositories\Zero.Core.IRepositories.csproj" />

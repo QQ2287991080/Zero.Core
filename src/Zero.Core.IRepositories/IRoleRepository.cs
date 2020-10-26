@@ -28,6 +28,12 @@ namespace Zero.Core.IRepositories
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
-        Task<List<int>> ExistsMenu(int roleId);
+        Task<ExistsMenu> ExistsMenu(int roleId);
+        /// <summary>
+        /// 获取角色的权限信息
+        /// </summary>
+        /// <param name="roleIds"></param>
+        /// <returns></returns>
+        Task<IEnumerable<Permission>> RolesExistsPermission(IEnumerable<int> roleIds);
     }
 }

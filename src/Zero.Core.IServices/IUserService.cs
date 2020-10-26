@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Zero.Core.Domain.Dtos;
 using Zero.Core.Domain.Dtos.User;
 using Zero.Core.Domain.Entities;
@@ -26,5 +27,25 @@ namespace Zero.Core.IServices
         /// </summary>
         /// <returns></returns>
         Task<UserInfo> GetUserInfo();
+        /// <summary>
+        /// 设置用户角色
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="roleId"></param>
+        /// <returns></returns>
+        Task SetRole(int userId, int roleId);
+        /// <summary>
+        /// 移除用户角色
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="roleId"></param>
+        /// <returns></returns>
+        Task RemoveRole(int userId, int roleId);
+        /// <summary>
+        /// 获取用户角色
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        Task<List<int>> GetUserRole(int userId);
     }
 }

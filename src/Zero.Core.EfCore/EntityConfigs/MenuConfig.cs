@@ -22,6 +22,7 @@ namespace Zero.Core.EfCore.EntityConfigs
             builder.Property(a => a.Sort).IsRequired();
             builder.Property(a => a.IsAllow);
             builder.Property(a => a.IdParent);
+            builder.HasMany(a => a.Permissions).WithOne();
         }
     }
 }

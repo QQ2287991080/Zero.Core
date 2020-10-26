@@ -165,7 +165,42 @@ namespace Zero.Core.WebApi.Controllers
             await _userService.DeleteAsync(id);
             return AjaxHelper.Seed(Ajax.Ok, info);
         }
-       
+        /// <summary>
+        /// 设置用户角色
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="roleId"></param>
+        /// <returns></returns>
+        [HttpGet("SetRole")]
+        public async Task<JsonResult> SetRole(int userId,int roleId)
+        {
+            await _userService.SetRole(userId, roleId);
+            return AjaxHelper.Seed(Ajax.Ok);
+        }
+        /// <summary>
+        /// 移除用户角色
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="roleId"></param>
+        /// <returns></returns>
+        [HttpGet("RemoveRole")]
+        public async Task<JsonResult> RemoveRole(int userId, int roleId)
+        {
+            await _userService.SetRole(userId, roleId);
+            return AjaxHelper.Seed(Ajax.Ok);
+        }
+        /// <summary>
+        /// 获取用户绑定的角色
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [HttpGet("GetUserRole")]
+        public async Task<JsonResult> GetUserRole(int userId)
+        {
+            var data = await _userService.GetUserRole(userId);
+            return AjaxHelper.Seed(Ajax.Ok, data);
+        }
+
         #endregion
     }
 }
