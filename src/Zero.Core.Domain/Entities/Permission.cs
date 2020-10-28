@@ -13,6 +13,10 @@ namespace Zero.Core.Domain.Entities
     /// </summary>
     public class Permission : Entity
     {
+        public Permission()
+        {
+            IsAllow = true;
+        }
         /// <summary>
         /// 权限名称
         /// </summary>

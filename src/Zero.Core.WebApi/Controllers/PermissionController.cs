@@ -41,8 +41,8 @@ namespace Zero.Core.WebApi.Controllers
         /// <param name="code"></param>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("IsExistCode")]
-        public async Task<JsonResult> IsExistCode(string code, int id = 0)
+        [HttpGet("IsExistsCode")]
+        public async Task<JsonResult> IsExistsCode(string code, int id = 0)
         {
             bool any = await _permission.IsExistsCode(code, id);
             return AjaxHelper.Seed(Ajax.Ok, any);
