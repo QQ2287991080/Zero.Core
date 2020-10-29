@@ -36,14 +36,14 @@ namespace Zero.Core.Services
         {
             Expression<Func<Role, bool>> where = w =>
             string.IsNullOrEmpty(condition.Name) || w.Name.Contains(condition.Name);
-            var result= await base.GetPageAsync(where, w => w.CreateTime, condition.PageIndex, condition.PageIndex);
+            var result= await base.GetPageAsync(where, w => w.CreateTime, condition.PageIndex, condition.PageSize);
             return new ListResult<Role>(condition.PageIndex, condition.PageSize, result.Item1, result.Item2);
         }
 
         public async Task<List<IdName>> LoadMenuPermission()
         {
             //菜单
-            var menus = await _menu.GetAllAsync(w => w.IsAllow == true, ob => ob.Sort, true);
+            var menus = await _menu.GetAllAsync(w => w.IsAllow == true, ob => ob.Sort);
             //权限
             var permissions = await _permission.GetAllAsync(w => menus.Select(s => s.Id).Contains(w.MenuId));
             List<IdName> names = new List<IdName>();
@@ -53,10 +53,12 @@ namespace Zero.Core.Services
                 IdName name = new IdName();
                 name.Id = item.Id;
                 name.Name = item.Name;
+                name.BindModel = item.Id + "Key";
                 name.Children = permissions
                     .Where(w => w.MenuId == item.Id)
-                    .Select(s => new IdName { Id = s.Id, Name = s.Name })
+                    .Select(s => new IdName { Id = s.Id, Name = s.Name, BindModel= item.Id + "Key" })
                     .ToList();
+                names.Add(name);
             }
             return names;
         }

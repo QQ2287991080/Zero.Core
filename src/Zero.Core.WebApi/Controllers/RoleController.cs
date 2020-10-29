@@ -106,8 +106,8 @@ namespace Zero.Core.WebApi.Controllers
         {
             if (await _role.IsExistsName(role.Name,role.Id))
                 return AjaxHelper.Seed(Ajax.Bad, "角色名已存在！");
-            var entity = await _role.AddAsync(role);
-            return AjaxHelper.Seed(Ajax.Ok, entity);
+            await _role.UpdateAsync(role);
+            return AjaxHelper.Seed(Ajax.Ok);
         }
         /// <summary>
         /// 详情

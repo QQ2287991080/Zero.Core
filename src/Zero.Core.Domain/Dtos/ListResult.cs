@@ -27,7 +27,7 @@ namespace Zero.Core.Domain.Dtos
             this.PageIndex = pageIndex;
             this.PageSize = pageSize;
             this.Count = data.Count();
-            this.Data = data.Skip((1 - pageIndex) * pageSize).Take(pageSize);
+            this.Data = data.Skip((pageIndex-1) * pageSize).Take(pageSize);
         }
         public ListResult() : this(0, 0, 0,new List<T>())
         {

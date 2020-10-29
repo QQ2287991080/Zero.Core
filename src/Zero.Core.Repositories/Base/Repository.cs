@@ -42,7 +42,7 @@ namespace Zero.Core.Repositories.Basee
             int count = await list.CountAsync();
             var orderList = isAsc == true ? list.OrderBy(order) : list.OrderByDescending(order);
             var pageList = await orderList
-                .Skip((1 - pageIndex) * pageSize)
+                .Skip((pageIndex-1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
             return new Tuple<int, List<TEntity>>(count, pageList);
