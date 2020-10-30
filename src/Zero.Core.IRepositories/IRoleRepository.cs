@@ -35,5 +35,12 @@ namespace Zero.Core.IRepositories
         /// <param name="roleIds"></param>
         /// <returns></returns>
         Task<IEnumerable<Permission>> RolesExistsPermission(IEnumerable<int> roleIds);
+        /// <summary>
+        /// 根据用户获取角色的名称
+        /// 角色1,角色2,角色3......
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        Task<string> GetRoleName(int userId);
     }
 }

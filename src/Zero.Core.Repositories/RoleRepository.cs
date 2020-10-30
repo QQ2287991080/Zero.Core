@@ -29,6 +29,7 @@ namespace Zero.Core.Repositories
             return roles.Select(s => s.RoleId);
         }
 
+        
 
         public async Task RemoveMenu(CheckPermission check)
         {
@@ -97,6 +98,17 @@ namespace Zero.Core.Repositories
                 Where(w => pIds.Contains(w.Id))
                 .ToListAsync();
             return permissions;
+        }
+
+
+
+        public async Task<string> GetRoleName(int userId)
+        {
+            var ids = await GetRoleIds(userId);
+            var roles = await base.Query()
+                .Where(w => ids.Contains(w.Id))
+                .ToListAsync();
+            return string.Join(",", roles.Select(s => s.Name));
         }
     }
 }

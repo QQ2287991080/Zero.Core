@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http.Internal;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,11 +53,15 @@ namespace Zero.Core.Services
         public async Task<ListResult<User>> GetDataList(UserCondition condition)
         {
             Expression<Func<User, bool>> where = PredicateExtensions.True<User>();
-            if (string.IsNullOrEmpty(condition.UserName))
+            if (!string.IsNullOrEmpty(condition.UserName))
                 where = where.And(a => a.UserName.Contains(condition.UserName));
-            if (string.IsNullOrEmpty(condition.Phone))
+            if (!string.IsNullOrEmpty(condition.Phone))
                 where = where.And(a => a.Phone.Contains(condition.Phone));
             var list = await base.GetPageAsync(where, w => w.CreateTime, condition.PageIndex, condition.PageSize);
+            foreach (var item in list.Item2)
+            {
+                item.RoleStr = await _role.GetRoleName(item.Id);
+            }
             return new ListResult<User>(condition.PageIndex, condition.PageSize, list.Item1, list.Item2);
         }
 

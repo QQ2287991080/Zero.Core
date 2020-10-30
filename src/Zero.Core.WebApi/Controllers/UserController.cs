@@ -19,7 +19,7 @@ namespace Zero.Core.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [SwaggerTag("用户管理")]
-    [Authorize]
+    //[Authorize]
     public class UserController : ControllerBase
     {
         readonly IUserService _userService;
