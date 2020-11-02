@@ -7,7 +7,7 @@ using Zero.Core.Domain.Entities.Base;
 
 namespace Zero.Core.IRepositories.Base
 {
-    public interface IRepository<TEntity> where TEntity : class, IEntity, new()
+    public partial interface IRepository<TEntity> where TEntity : class, IEntity, new()
     {
         /// <summary>
         /// IQueryable to Entity

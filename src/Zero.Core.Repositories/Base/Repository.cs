@@ -10,7 +10,7 @@ using Zero.Core.IRepositories.Base;
 
 namespace Zero.Core.Repositories.Basee
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity, new()
+    public partial class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity, new()
     {
         readonly EfCoreDbContext _dbContext;
         public Repository(IUnitOfWork unit)
@@ -205,5 +205,46 @@ namespace Zero.Core.Repositories.Basee
         {
             await _dbContext.SaveChangesAsync();
         }
+
+
+        #region 同步查询
+        public List<TEntity> GetAll()
+        {
+            return Query().ToList();
+        }
+        public List<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate)
+        {
+            return Query().Where(predicate).ToList();
+        }
+
+        public List<TEntity> GetAll<TProperty>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TProperty>> order, bool isAsc = false)
+        {
+            var list = isAsc == true ? Query().OrderBy(order) : Query().OrderByDescending(order);
+            return list.ToList();
+        }
+        public Tuple<int, List<TEntity>> GetPage<TProperty>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TProperty>> order, int pageIndex, int pageSize, bool isAsc = false)
+        {
+            var list = Query().Where(predicate);
+            int count =  list.Count();
+            var orderList = isAsc == true ? list.OrderBy(order) : list.OrderByDescending(order);
+            var pageList = orderList
+                .Skip((pageIndex - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+            return new Tuple<int, List<TEntity>>(count, pageList);
+        }
+        public TEntity First(int id)
+        {
+            return Query().Where(w => w.Id == id).FirstOrDefault();
+        }
+        public TEntity First(Expression<Func<TEntity, bool>> predicate)
+        {
+            return Query().FirstOrDefault(predicate);
+        }
+        public bool Any(Expression<Func<TEntity, bool>> predicate)
+        {
+            return Query().Any(predicate);
+        }
+        #endregion
     }
 }

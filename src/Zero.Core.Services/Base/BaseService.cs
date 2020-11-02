@@ -94,5 +94,38 @@ namespace Zero.Core.Services.Base
         {
             await _repository.SaveAsync();
         }
+
+
+        #region 同步查询
+        public List<TEntity> GetAll()
+        {
+            return _repository.GetAll();
+        }
+        public List<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate)
+        {
+            return _repository.GetAll(predicate);
+        }
+
+        public List<TEntity> GetAll<TProperty>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TProperty>> order, bool isAsc = false)
+        {
+            return _repository.GetAll(predicate, order, isAsc);
+        }
+        public Tuple<int, List<TEntity>> GetPage<TProperty>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TProperty>> order, int pageIndex, int pageSize, bool isAsc = false)
+        {
+            return _repository.GetPage(predicate, order, pageIndex, pageSize, isAsc);
+        }
+        public TEntity First(int id)
+        {
+            return _repository.First(id);
+        }
+        public TEntity First(Expression<Func<TEntity, bool>> predicate)
+        {
+            return _repository.First(predicate);
+        }
+        public bool Any(Expression<Func<TEntity, bool>> predicate)
+        {
+            return _repository.Any(predicate);
+        }
+        #endregion
     }
 }

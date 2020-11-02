@@ -12,9 +12,11 @@ namespace Zero.Core.Services
 {
     public class DictionariesService:BaseService<Dictionaries>,IDictionariesService
     {
+        readonly IDictionariesRepository _dictionaries;
         public DictionariesService(IDictionariesRepository dictionaries )
         {
             _repository = dictionaries;
+            _dictionaries = dictionaries;
         }
 
     }
