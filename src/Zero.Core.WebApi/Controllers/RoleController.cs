@@ -60,6 +60,17 @@ namespace Zero.Core.WebApi.Controllers
         #region Role
 
         /// <summary>
+        /// 获取角色列表部分字段
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetShortDataList")]
+        public async Task<JsonResult> GetShortDataList()
+        {
+            var list = await _role.GetAllAsync();
+            var data = list.Select(s => new { s.Id, s.Name,Checked=false });
+            return AjaxHelper.Seed(Ajax.Ok, data);
+        }
+        /// <summary>
         /// 分页列表
         /// </summary>
         /// <param name="condition"></param>

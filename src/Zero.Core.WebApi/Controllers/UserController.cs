@@ -52,6 +52,10 @@ namespace Zero.Core.WebApi.Controllers
             {
                 return AjaxHelper.Seed(System.Net.HttpStatusCode.BadRequest, "密码错误");
             }
+            if (user.IsLock == true)
+            {
+                return AjaxHelper.Seed(Ajax.Bad, "您的账号已被限制登录，请联系管理员！");
+            }
             //创建token
             var token = _userProvider.CreateJwtToken(new JwtInput() { UserName = dto.UserName });
             //保存用户信息
@@ -105,8 +109,26 @@ namespace Zero.Core.WebApi.Controllers
             var any = await _userService.IsUserNameExists(user.UserName);
             if (any)
                 return AjaxHelper.Seed(Ajax.Bad,"该用户名已存在！");
+            if (string.IsNullOrEmpty(user.RealName))
+                user.RealName = user.UserName;
             var entity = await _userService.AddAsync(user);
             return AjaxHelper.Seed(Ajax.Ok, entity);
+        }
+        /// <summary>
+        /// 设置用户状态
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="isLock"></param>
+        /// <returns></returns>
+        [HttpGet("ChangeLock")]
+        public async Task<JsonResult> ChangeLock(int userId,bool isLock)
+        {
+            var info = await _userService.FirstAsync(userId);
+            if (info == null)
+                return AjaxHelper.Seed(Ajax.Bad, "用户已经不存在！");
+            info.IsLock = isLock;
+            await _userService.UpdateAsync(info);
+            return AjaxHelper.Seed(Ajax.Ok);
         }
         /// <summary>
         /// 判断用户是否存在
@@ -134,7 +156,12 @@ namespace Zero.Core.WebApi.Controllers
             if (await _userService.IsUserNameExists(user.UserName,user.Id))
                 return AjaxHelper.Seed(Ajax.Bad, "用户名已存在，请重新输入！");
             //更新用户
-            await _userService.UpdateAsync(user);
+            info.UserName = user.UserName;
+            info.Phone = user.Phone;
+            info.Email = user.Email;
+            info.Sex = user.Sex;
+            info.Remark = user.Remark;
+            await _userService.UpdateAsync(info);
             return AjaxHelper.Seed(Ajax.Ok);
         }
         /// <summary>
@@ -186,7 +213,7 @@ namespace Zero.Core.WebApi.Controllers
         [HttpGet("RemoveRole")]
         public async Task<JsonResult> RemoveRole(int userId, int roleId)
         {
-            await _userService.SetRole(userId, roleId);
+            await _userService.RemoveRole(userId, roleId);
             return AjaxHelper.Seed(Ajax.Ok);
         }
         /// <summary>
