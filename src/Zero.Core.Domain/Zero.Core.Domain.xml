@@ -1,0 +1,444 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Zero.Core.Domain</name>
+    </assembly>
+    <members>
+        <member name="P:Zero.Core.Domain.Dtos.Dictionaries.OutputDicDto.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.Dictionaries.OutputDicDto.Memo">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.Dictionaries.OutputDicDto.IdParent">
+            <summary>
+            父级id
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.Dictionaries.OutputDicDto.Sort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.Dictionaries.OutputDicDto.IsAllow">
+            <summary>
+            是否启用
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.Dictionaries.OutputDicDto.Childrens">
+            <summary>
+            子集
+            </summary>
+        </member>
+        <member name="T:Zero.Core.Domain.Dtos.ListResult`1">
+            <summary>
+            分页返回数据
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.ListResult`1.Count">
+            <summary>
+            数据总数
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.ListResult`1.PageIndex">
+            <summary>
+            页码
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.ListResult`1.PageSize">
+            <summary>
+            页数
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.ListResult`1.Data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.Menu.OutputMenu.Name">
+            <summary>
+            菜单名称
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.Menu.OutputMenu.Url">
+            <summary>
+            路由
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.Menu.OutputMenu.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.Menu.OutputMenu.IconType">
+            <summary>
+            图标类型
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.Menu.OutputMenu.ClassName">
+            <summary>
+            样式
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.Menu.OutputMenu.Sort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.Menu.OutputMenu.IsAllow">
+            <summary>
+            是否启用
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.Menu.OutputMenu.IdParent">
+            <summary>
+            父级菜单
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.Menu.OutputMenu.Childrens">
+            <summary>
+            子菜单
+            </summary>
+        </member>
+        <member name="T:Zero.Core.Domain.Dtos.PageCondition">
+            <summary>
+            分页
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.PageCondition.PageIndex">
+            <summary>
+            页码
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.PageCondition.PageSize">
+            <summary>
+            页数
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.Role.RoleCondition.Name">
+            <summary>
+            角色名称
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.Role.CheckPermission.Menus">
+            <summary>
+            菜单信息
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.Role.CheckPermission.RoleId">
+            <summary>
+            角色id
+            </summary>
+        </member>
+        <member name="T:Zero.Core.Domain.Dtos.User.UserCondition">
+            <summary>
+            用户列表
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.User.UserCondition.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.User.UserCondition.Phone">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="T:Zero.Core.Domain.Dtos.User.LoginDto">
+            <summary>
+            用户登录
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.User.LoginDto.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.User.LoginDto.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.User.UserInfo.Menu">
+            <summary>
+            菜单
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.User.UserInfo.PermissionCode">
+            <summary>
+            权限
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.User.UserInfo.UserId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.User.UserInfo.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.User.UserInfo.RealName">
+            <summary>
+            真实姓名
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.User.UserInfo.Avatar">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.User.UserInfo.Remark">
+            <summary>
+            签名
+            </summary>
+        </member>
+        <member name="T:Zero.Core.Domain.Entities.Base.IEntity">
+            <summary>
+            定义接口base字段便于操作字段
+            </summary>
+        </member>
+        <member name="T:Zero.Core.Domain.Entities.Base.Entity">
+            <summary>
+            实现接口IEntity,所有实体继承该这个基类
+            </summary>
+        </member>
+        <member name="T:Zero.Core.Domain.Entities.Dictionaries">
+            <summary>
+            可维护类型表
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.Dictionaries.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.Dictionaries.Memo">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.Dictionaries.IdParent">
+            <summary>
+            父级id
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.Dictionaries.Sort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.Dictionaries.IsAllow">
+            <summary>
+            是否启用
+            </summary>
+        </member>
+        <member name="T:Zero.Core.Domain.Entities.Menu">
+            <summary>
+            菜单表
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.Menu.Name">
+            <summary>
+            菜单名称
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.Menu.Url">
+            <summary>
+            路由
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.Menu.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.Menu.IconType">
+            <summary>
+            图标类型
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.Menu.ClassName">
+            <summary>
+            样式
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.Menu.Sort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.Menu.IsAllow">
+            <summary>
+            是否启用
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.Menu.IdParent">
+            <summary>
+            父级菜单
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.Menu.Permissions">
+            <summary>
+            集合导航属性
+            </summary>
+        </member>
+        <member name="T:Zero.Core.Domain.Entities.Permission">
+            <summary>
+            菜单权限表
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.Permission.Name">
+            <summary>
+            权限名称
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.Permission.Code">
+            <summary>
+            权限编码
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.Permission.MenuId">
+            <summary>
+            所属菜单
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.Permission.IsAllow">
+            <summary>
+            是否启用
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.Permission.Memo">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.Permission.Menu">
+            <summary>
+            导航属性
+            </summary>
+        </member>
+        <member name="T:Zero.Core.Domain.Entities.Role">
+            <summary>
+            角色表
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.Role.Name">
+            <summary>
+            角色名称
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.Role.Memo">
+            <summary>
+            角色备注
+            </summary>
+        </member>
+        <member name="T:Zero.Core.Domain.Entities.RoleMenu">
+            <summary>
+            角色菜单表
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.RoleMenu.RoleId">
+            <summary>
+            角色id
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.RoleMenu.MenuId">
+            <summary>
+            菜单id
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.RolePermission.RoleId">
+            <summary>
+            角色id
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.RolePermission.Pid">
+            <summary>
+            权限id
+            </summary>
+        </member>
+        <member name="T:Zero.Core.Domain.Entities.User">
+            <summary>
+            用户表
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.User.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.User.RealName">
+            <summary>
+            真实姓名
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.User.Email">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.User.Phone">
+            <summary>
+            手机号码
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.User.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.User.Salt">
+            <summary>
+            加密盐
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.User.IsLock">
+            <summary>
+            是否被锁定
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.User.Remark">
+            <summary>
+            签名
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.User.Sex">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.User.Avatar">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="T:Zero.Core.Domain.Entities.UserRole">
+            <summary>
+            用户角色表
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.UserRole.UserId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.UserRole.RoleId">
+            <summary>
+            角色id
+            </summary>
+        </member>
+        <member name="T:Zero.Core.Domain.Enums.IconType">
+            <summary>
+            图标类型
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -53,10 +53,9 @@ namespace Zero.Core.Services
                 IdName name = new IdName();
                 name.Id = item.Id;
                 name.Name = item.Name;
-                name.BindModel = item.Id + "Key";
                 name.Children = permissions
                     .Where(w => w.MenuId == item.Id)
-                    .Select(s => new IdName { Id = s.Id, Name = s.Name, BindModel= item.Id + "Key" })
+                    .Select(s => new IdName { Id = s.Id, Name = s.Name })
                     .ToList();
                 names.Add(name);
             }

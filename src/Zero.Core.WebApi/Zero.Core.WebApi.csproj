@@ -8,7 +8,7 @@
 
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>\Zero.Core.WebApi.xml</DocumentationFile>
+    <DocumentationFile>..\Zero.Core.WebApi\Zero.Core.WebApi.xml</DocumentationFile>
     <NoWarn>1701;1702;1705;1591</NoWarn>
     <OutputPath></OutputPath>
   </PropertyGroup>
@@ -46,6 +46,12 @@
     <ProjectReference Include="..\Zero.Core.EfCore\Zero.Core.EfCore.csproj" />
     <ProjectReference Include="..\Zero.Core.IRepositories\Zero.Core.IRepositories.csproj" />
     <ProjectReference Include="..\Zero.Core.IServices\Zero.Core.IServices.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Zero.Core.WebApi.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>

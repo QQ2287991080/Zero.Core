@@ -1,0 +1,403 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Zero.Core.WebApi</name>
+    </assembly>
+    <members>
+        <member name="T:Zero.Core.WebApi.Controllers.DictionariesController">
+            <summary>
+            字典数据
+            </summary>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.DictionariesController.GetDicTree">
+            <summary>
+            获取字典树
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.DictionariesController.Add(Zero.Core.Domain.Entities.Dictionaries)">
+            <summary>
+            新增
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.DictionariesController.IsContains(System.String,System.Nullable{System.Int32},System.Int32)">
+            <summary>
+            验证名称的重复
+            </summary>
+            <param name="name"></param>
+            <param name="idParent"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.DictionariesController.Update(Zero.Core.Domain.Entities.Dictionaries)">
+            <summary>
+            修改
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.DictionariesController.Details(System.Int32)">
+            <summary>
+            详情
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.DictionariesController.Delete(System.Int32)">
+            <summary>
+            删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.MenuController.GetAllMenu">
+            <summary>
+            返回所有可用菜单，用于角色权限操作
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.MenuController.GetMenuTree">
+            <summary>
+            获取菜单树
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.MenuController.IsExistsName(System.String,System.Int32)">
+            <summary>
+            验证菜单名称是否已经存在
+            </summary>
+            <param name="name"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.MenuController.Add(Zero.Core.Domain.Entities.Menu)">
+            <summary>
+            新增菜单
+            </summary>
+            <param name="menu"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.MenuController.Update(Zero.Core.Domain.Entities.Menu)">
+            <summary>
+            更新菜单
+            </summary>
+            <param name="menu"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.MenuController.Details(System.Int32)">
+            <summary>
+            菜单详情
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.MenuController.Delete(System.Int32)">
+            <summary>
+            删除菜单
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.PermissionController.GetMenuPermission(System.Int32)">
+            <summary>
+            获取菜单的权限
+            </summary>
+            <param name="menuId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.PermissionController.IsExistsCode(System.String,System.Int32)">
+            <summary>
+            验证权限编码重复
+            </summary>
+            <param name="code"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.PermissionController.Add(Zero.Core.Domain.Entities.Permission)">
+            <summary>
+            新增权限
+            </summary>
+            <param name="permission"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.PermissionController.Update(Zero.Core.Domain.Entities.Permission)">
+            <summary>
+            修改权限
+            </summary>
+            <param name="permission"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.PermissionController.Details(System.Int32)">
+            <summary>
+            详情
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.PermissionController.Delet(System.Int32)">
+            <summary>
+            删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.RoleController.GetMenuPermission">
+            <summary>
+            获取当前所有能够使用的菜单和权限
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.RoleController.GetRoleExistPermission(System.Int32)">
+            <summary>
+            获取角色权限
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.RoleController.SetPermission(Zero.Core.Domain.Dtos.Role.CheckPermission)">
+            <summary>
+            设置角色权限<see cref="T:Zero.Core.Domain.Dtos.Role.CheckPermission"/>
+            </summary>
+            <param name="check"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.RoleController.GetShortDataList">
+            <summary>
+            获取角色列表部分字段
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.RoleController.GetDataList(Zero.Core.Domain.Dtos.Role.RoleCondition)">
+            <summary>
+            分页列表
+            </summary>
+            <param name="condition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.RoleController.IsExistsName(System.String,System.Int32)">
+            <summary>
+            验证角色名称
+            </summary>
+            <param name="name"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.RoleController.Add(Zero.Core.Domain.Entities.Role)">
+            <summary>
+            新增
+            </summary>
+            <param name="role"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.RoleController.Update(Zero.Core.Domain.Entities.Role)">
+            <summary>
+            新增
+            </summary>
+            <param name="role"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.RoleController.Details(System.Int32)">
+            <summary>
+            详情
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.RoleController.Delete(System.Int32)">
+            <summary>
+            删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.test.TestController.testMapper">
+            <summary>
+            测试automapper
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.test.ValuesController.query(System.String)">
+            <summary>
+            新增
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.UserController.Login(Zero.Core.Domain.Dtos.User.LoginDto)">
+            <summary>
+            用户登录
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.UserController.LoginOut">
+            <summary>
+            用户登出
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.UserController.GetUserInfo">
+            <summary>
+            获取用户详情
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.UserController.GetDataList(Zero.Core.Domain.Dtos.User.UserCondition)">
+            <summary>
+            分页获取数据
+            </summary>
+            <param name="condition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.UserController.Add(Zero.Core.Domain.Entities.User)">
+            <summary>
+            添加用户
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.UserController.ChangeLock(System.Int32,System.Boolean)">
+            <summary>
+            设置用户状态
+            </summary>
+            <param name="userId"></param>
+            <param name="isLock"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.UserController.IsUserNameExists(System.String,System.Int32)">
+            <summary>
+            判断用户是否存在
+            </summary>
+            <param name="userName">用户名</param>
+            <param name="id">修改时传id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.UserController.Update(Zero.Core.Domain.Entities.User)">
+            <summary>
+            修改用户
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.UserController.Details(System.Int32)">
+            <summary>
+            获取用户详情
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.UserController.Delete(System.Int32)">
+            <summary>
+            删除用户
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.UserController.SetRole(System.Int32,System.Int32)">
+            <summary>
+            设置用户角色
+            </summary>
+            <param name="userId"></param>
+            <param name="roleId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.UserController.RemoveRole(System.Int32,System.Int32)">
+            <summary>
+            移除用户角色
+            </summary>
+            <param name="userId"></param>
+            <param name="roleId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.UserController.GetUserRole(System.Int32)">
+            <summary>
+            获取用户绑定的角色
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Zero.Core.WebApi.Filters.AuthorizationFilter">
+            <summary>
+            权限认证
+            </summary>
+        </member>
+        <member name="T:Zero.Core.WebApi.Filters.CustomAuthorizeFilter">
+            <summary>
+            自定义接口实现，排除有AllowAnonymousAttribute的接口
+            </summary>
+        </member>
+        <member name="T:Zero.Core.WebApi.Filters.IpLimitFilter">
+            <summary>
+            限制ip访问次数
+            </summary>
+        </member>
+        <member name="T:Zero.Core.WebApi.Filters.SysExceptionFilter">
+            <summary>
+            全局异常处理器
+            </summary>
+        </member>
+        <member name="P:Zero.Core.WebApi.Mapper.UserDto.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:Zero.Core.WebApi.Mapper.UserDto.RealName">
+            <summary>
+            真实姓名
+            </summary>
+        </member>
+        <member name="P:Zero.Core.WebApi.Mapper.UserDto.Email">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="P:Zero.Core.WebApi.Mapper.UserDto.Phone">
+            <summary>
+            手机号码
+            </summary>
+        </member>
+        <member name="P:Zero.Core.WebApi.Mapper.UserDto.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:Zero.Core.WebApi.Mapper.UserDto.Salt">
+            <summary>
+            加密盐
+            </summary>
+        </member>
+        <member name="P:Zero.Core.WebApi.Mapper.UserDto.IsLock">
+            <summary>
+            是否被锁定
+            </summary>
+        </member>
+        <member name="P:Zero.Core.WebApi.Mapper.UserDto.Remark">
+            <summary>
+            签名
+            </summary>
+        </member>
+        <member name="P:Zero.Core.WebApi.Mapper.UserDto.Sex">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="T:Zero.Core.WebApi.Middlewares.RequestLogMiddleware">
+            <summary>
+            记录请求信息
+            </summary>
+        </member>
+        <member name="M:Zero.Core.WebApi.Program.Main(System.String[])">
+            <summary>
+            .net 通用主机
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Zero.Core.WebApi.Startup.ConfigureContainer(Autofac.ContainerBuilder)">
+            <summary>
+            autofac 接管 ioc
+            </summary>
+            <param name="builder"></param>
+        </member>
+    </members>
+</doc>
