@@ -19,10 +19,10 @@
 >
 ## 4.蓝图
 >对于这个框架的技术方向的整理，基本都是我未来想去学习或者已经学习了的技术，如图：  
->![](docs/TechnologyDesign/Zero.Core.Technology.png)  
+>![image](docs/TechnologyDesign/Zero.Core.Technology.png)  
 ## 5.数据库设计
 >数据库表设计主要为用户表、角色表、菜单表、权限表、字典数据表，同时附带的一些中间表  
->![](docs/SqlDesign/SqlDesign.png)
+>![image](docs/SqlDesign/SqlDesign.png)
 ## 6.功能  
 >✅用户管理  
 >✅角色管理  
