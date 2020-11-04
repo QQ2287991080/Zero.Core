@@ -9,14 +9,33 @@
 >前端仓库:[前往](https://github.com/QQ2287991080/Zero.Core.Admin)
 ## 2.预览
 > 施工中... 
-## 3.技术
+## 3.开发  
+>| **介绍** | **说明** |
+>| :----: | :----:|  
+>|开发环境|VS2019|
+>
+>
+## 3.蓝图
 >对于这个框架的技术方向的整理，基本都是我未来想去学习或者已经学习了的技术，如图：  
 
 >![](docs/TechnologyDesign/Zero.Core.Technology.png)  
 ## 4.数据库设计
 >数据库表设计主要为用户表、角色表、菜单表、权限表、字典数据表，同时附带的一些中间表  
->![](docs/TechnologyDesign/Zero.Core.Technology.png)
+>![](docs/SqlDesign/SqlDesign.png)
 ## 5.功能  
->✅  
->❎
+>✅用户管理  
+>✅角色管理  
+>✅权限管理  
+>✅菜单管理  
+>✅字典数据管理  
+>✅EfCore+SqlServer  
+>❎EfCore+MySql  
+>✅Jwt用户权限  
+>✅Redis+Jwt用户登录保护  
+>✅Autofac依赖注入  
+>❎SignalR实时推送全局错误日志  
+>✅Log4net 记录程序日志  
+>✅Swagger API接口文档  
+>✅AutoMapper 数据映射  
+>❎Quartz.Net任务调度  
 ## 6.未完待续......
