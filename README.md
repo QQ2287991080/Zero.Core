@@ -12,10 +12,10 @@
 ## 3.技术
 >对于这个框架的技术方向的整理，基本都是我未来想去学习或者已经学习了的技术，如图：  
 
->![]()  
+>![](https://github.com/QQ2287991080/Zero.Core/blob/master/docs/TechnologyDesign/Zero.Core.Technology.png)  
 ## 4.数据库设计
 >数据库表设计主要为用户表、角色表、菜单表、权限表、字典数据表，同时附带的一些中间表  
-
+>![](https://github.com/QQ2287991080/Zero.Core/blob/master/docs/TechnologyDesign/Zero.Core.Technology.png)
 ## 5.功能  
 >✅  
 >❎
