@@ -23,6 +23,8 @@
 ## 5.数据库设计
 >数据库表设计主要为用户表、角色表、菜单表、权限表、字典数据表，同时附带的一些中间表  
 >![image](docs/SqlDesign/SqlDesign.png)
+>这个模型使用PowerDesign设计的，文件[地址](https://github.com/QQ2287991080/Zero.Core/tree/master/docs/SqlDesign) .pdm后缀名。    
+>ps:*需要注意的是我的Pd的版本是16.6的，要不然是打不开的*
 ## 6.功能  
 >✅用户管理  
 >✅角色管理  
@@ -39,6 +41,9 @@
 >✅Swagger API接口文档  
 >✅AutoMapper 数据映射  
 >❎Quartz.Net任务调度  
-## 7.未完待续......
-
+## 7.交流
+>欢迎各位高手，进群友好讨论学习技术！  
+>QQ群：925362372
 ## 8.致谢
+
+## 
