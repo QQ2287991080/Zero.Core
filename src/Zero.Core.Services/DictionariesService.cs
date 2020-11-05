@@ -36,7 +36,7 @@ namespace Zero.Core.Services
             }
             else
             {
-                return await base.AnyAsync(f => f.IdParent == idParent && f.Name == name && f.Id == id);
+                return await base.AnyAsync(f => f.IdParent == idParent && f.Name == name && f.Id != id);
             }
         }
 

@@ -43,7 +43,7 @@ namespace Zero.Core.WebApi.Controllers
         [HttpPost("Login"),AllowAnonymous]
         public async Task<JsonResult> Login(LoginDto dto )
         {
-            var user = await _userService.FirstAsync(f => dto.UserName == dto.UserName);
+            var user = await _userService.FirstAsync(f => f.UserName == dto.UserName);
             if (user == null)
             {
                 return AjaxHelper.Seed(System.Net.HttpStatusCode.BadRequest, "用户名错误");
@@ -111,6 +111,8 @@ namespace Zero.Core.WebApi.Controllers
                 return AjaxHelper.Seed(Ajax.Bad,"该用户名已存在！");
             if (string.IsNullOrEmpty(user.RealName))
                 user.RealName = user.UserName;
+            if (string.IsNullOrEmpty(user.Password))
+                user.Password = "123456";
             var entity = await _userService.AddAsync(user);
             return AjaxHelper.Seed(Ajax.Ok, entity);
         }

@@ -57,6 +57,10 @@ namespace Zero.Core.Services
                     .Where(w => w.MenuId == item.Id)
                     .Select(s => new IdName { Id = s.Id, Name = s.Name })
                     .ToList();
+                if (item.Url == "/")
+                {
+                    name.IsHidden = false;
+                }
                 names.Add(name);
             }
             return names;

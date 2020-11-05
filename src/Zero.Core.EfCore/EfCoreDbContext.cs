@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
+using Zero.Core.Common.Helper;
 using Zero.Core.Domain.Entities;
 using Zero.Core.EfCore.EntityConfigs;
 
@@ -8,6 +10,7 @@ namespace Zero.Core.EfCore
     public class EfCoreDbContext : DbContext
     {
         //readonly DbContextOptions<EfCoreDbContext> _options;
+        public static readonly ILoggerFactory MyLoggerFactory = LoggerFactory.Create(builder => { builder.AddConsole(); });
         public EfCoreDbContext(DbContextOptions<EfCoreDbContext> options) : base(options)
         {
             //_options = options;
@@ -16,6 +19,11 @@ namespace Zero.Core.EfCore
         protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
         {
             base.OnConfiguring(optionBuilder);
+            var open = AppsettingHelper.Get<bool>("EFCoreLog");
+            if (open)
+            {
+                optionBuilder.UseLoggerFactory(MyLoggerFactory);
+            }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

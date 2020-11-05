@@ -52,6 +52,10 @@ namespace Zero.Core.Domain.Dtos.User
         /// </summary>
         public IEnumerable<OutputMenu> Menu { get; set; }
         /// <summary>
+        /// 菜单选中
+        /// </summary>
+        public IEnumerable<string> MenuUrls { get; set; }
+        /// <summary>
         /// 权限
         /// </summary>
         public IEnumerable<string> PermissionCode { get; set; }

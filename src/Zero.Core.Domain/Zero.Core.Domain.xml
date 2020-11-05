@@ -170,6 +170,11 @@
             菜单
             </summary>
         </member>
+        <member name="P:Zero.Core.Domain.Dtos.User.UserInfo.MenuUrls">
+            <summary>
+            菜单选中
+            </summary>
+        </member>
         <member name="P:Zero.Core.Domain.Dtos.User.UserInfo.PermissionCode">
             <summary>
             权限

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Zero.Core.Common.Result;
 using Zero.Core.IServices;
 using Zero.Core.WebApi.Mapper;
@@ -39,6 +40,24 @@ namespace Zero.Core.WebApi.Controllers.test
             var user = _user.Query().FirstOrDefault();
             var dto = _mapper.Map<UserDto>(user);
             return AjaxHelper.Seed(System.Net.HttpStatusCode.OK, "OK", dto);
+        }
+        [HttpGet("TestEFCoreFirst")]
+        public async Task<JsonResult> One(string name)
+        {
+            var user = await _user.FirstAsync(f => f.UserName == name);
+            return AjaxHelper.Seed(Ajax.Ok, user);
+        }
+        [HttpGet("TestEFCoreFirst2")]
+        public  JsonResult Tow(string name)
+        {
+            var user = _user.First(f => f.UserName == name);
+            return AjaxHelper.Seed(Ajax.Ok, user);
+        }
+        [HttpGet("TestEFCoreFirst3")]
+        public async Task<JsonResult> Three(int id)
+        {
+            var user = await _user.FirstAsync(f => f.Id == id);
+            return AjaxHelper.Seed(Ajax.Ok, user);
         }
     }
 }

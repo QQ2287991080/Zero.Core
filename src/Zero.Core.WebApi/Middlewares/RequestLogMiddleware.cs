@@ -42,7 +42,9 @@ namespace Zero.Core.WebApi.Middlewares
                 switch (method)
                 {
                     case "GET":
-                        parameter = request.QueryString.ToUriComponent();
+                        //解码
+                        var encode = System.Web.HttpUtility.UrlDecode(request.QueryString.ToUriComponent());
+                        parameter = encode;
                         break;
                     case "POST":
                         if (request.ContentType == null) break;
