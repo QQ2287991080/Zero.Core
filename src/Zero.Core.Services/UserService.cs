@@ -94,13 +94,17 @@ namespace Zero.Core.Services
             //角色信息
             var refRoles = await _role.GetRoleIds(user.Id);
             var roles = await _role.GetAllAsync(w => refRoles.Contains(w.Id));
+            var roleStr = await _role.GetRoleName(user.Id);
             //菜单信息
             var menus = await _menu.GetRolesMenu(refRoles);
             var menuUrls = (await _menu.GetAllAsync(w => menus.Select(s => s.MenuId).Contains(w.Id) && w.Url != "/")).Select(s => s.Url);
             //权限信息
             var permission = await _role.RolesExistsPermission(refRoles);
+
             UserInfo userInfo = new UserInfo()
             {
+                IsSuperAdmin = roles.Any(a => a.Name == "SuperAdmin"),
+                Role = roleStr,
                 Avatar = user.Avatar,
                 Menu = await ResolveMenu(menus),
                 MenuUrls = menuUrls,

@@ -165,6 +165,16 @@
             密码
             </summary>
         </member>
+        <member name="P:Zero.Core.Domain.Dtos.User.UserInfo.Role">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Dtos.User.UserInfo.IsSuperAdmin">
+            <summary>
+            是否是超级管理员
+            </summary>
+        </member>
         <member name="P:Zero.Core.Domain.Dtos.User.UserInfo.Menu">
             <summary>
             菜单

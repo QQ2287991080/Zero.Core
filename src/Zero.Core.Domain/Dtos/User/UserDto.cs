@@ -48,6 +48,14 @@ namespace Zero.Core.Domain.Dtos.User
     public class UserInfo
     {
         /// <summary>
+        /// 角色
+        /// </summary>
+        public string Role { get; set; }
+        /// <summary>
+        /// 是否是超级管理员
+        /// </summary>
+        public bool IsSuperAdmin { get; set; }
+        /// <summary>
         /// 菜单
         /// </summary>
         public IEnumerable<OutputMenu> Menu { get; set; }

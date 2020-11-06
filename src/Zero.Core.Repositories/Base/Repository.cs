@@ -33,7 +33,7 @@ namespace Zero.Core.Repositories.Basee
         public async Task<List<TEntity>> GetAllAsync<TProperty>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TProperty>> order, bool isAsc = false)
         {
             var list = isAsc == true ? Query().OrderBy(order) : Query().OrderByDescending(order);
-            return await list.ToListAsync();
+            return await list.Where(predicate).ToListAsync();
         }
 
         public async Task<Tuple<int, List<TEntity>>> GetPageAsync<TProperty>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TProperty>> order, int pageIndex, int pageSize, bool isAsc = false)
