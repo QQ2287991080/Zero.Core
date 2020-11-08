@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -40,8 +41,8 @@ namespace Zero.Core.WebApi.Controllers
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        [HttpPost("Login"),AllowAnonymous]
-        public async Task<JsonResult> Login(LoginDto dto )
+        [HttpPost("Login"), AllowAnonymous]
+        public async Task<JsonResult> Login(LoginDto dto)
         {
             var user = await _userService.FirstAsync(f => f.UserName == dto.UserName);
             if (user == null)
@@ -82,9 +83,17 @@ namespace Zero.Core.WebApi.Controllers
             var info = await _userService.GetUserInfo();
             return AjaxHelper.Seed(Ajax.Ok, info);
         }
-
+        /// <summary>
+        /// 获取当前用户的具体信息
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("UserDetails")]
+        public async Task<JsonResult> UserDetails()
+        {
+            var info = await _userService.GetCenterInfo();
+            return AjaxHelper.Seed(Ajax.Ok, info);
+        }
         #endregion
-
         #region User
         /// <summary>
         /// 分页获取数据
@@ -108,7 +117,7 @@ namespace Zero.Core.WebApi.Controllers
             //判断用户是否已存在
             var any = await _userService.IsUserNameExists(user.UserName);
             if (any)
-                return AjaxHelper.Seed(Ajax.Bad,"该用户名已存在！");
+                return AjaxHelper.Seed(Ajax.Bad, "该用户名已存在！");
             if (string.IsNullOrEmpty(user.RealName))
                 user.RealName = user.UserName;
             if (string.IsNullOrEmpty(user.Password))
@@ -123,7 +132,7 @@ namespace Zero.Core.WebApi.Controllers
         /// <param name="isLock"></param>
         /// <returns></returns>
         [HttpGet("ChangeLock")]
-        public async Task<JsonResult> ChangeLock(int userId,bool isLock)
+        public async Task<JsonResult> ChangeLock(int userId, bool isLock)
         {
             var info = await _userService.FirstAsync(userId);
             if (info == null)
@@ -155,7 +164,7 @@ namespace Zero.Core.WebApi.Controllers
             var info = await _userService.FirstAsync(f => f.Id == user.Id);
             if (info == null)
                 return AjaxHelper.Seed(Ajax.Bad, "用户已不存在，请刷新！");
-            if (await _userService.IsUserNameExists(user.UserName,user.Id))
+            if (await _userService.IsUserNameExists(user.UserName, user.Id))
                 return AjaxHelper.Seed(Ajax.Bad, "用户名已存在，请重新输入！");
             //更新用户
             info.UserName = user.UserName;
@@ -201,7 +210,7 @@ namespace Zero.Core.WebApi.Controllers
         /// <param name="roleId"></param>
         /// <returns></returns>
         [HttpGet("SetRole")]
-        public async Task<JsonResult> SetRole(int userId,int roleId)
+        public async Task<JsonResult> SetRole(int userId, int roleId)
         {
             await _userService.SetRole(userId, roleId);
             return AjaxHelper.Seed(Ajax.Ok);
@@ -230,6 +239,75 @@ namespace Zero.Core.WebApi.Controllers
             return AjaxHelper.Seed(Ajax.Ok, data);
         }
 
+        #endregion
+        #region Center
+        /// <summary>
+        /// 重置密码
+        /// </summary>
+        /// <param name="password"></param>
+        /// <param name="passwordCfm"></param>
+        /// <returns></returns>
+        [HttpGet("ResetPassword")]
+        public async Task<JsonResult> ResetPassword(string password, string passwordCfm)
+        {
+            if (password != passwordCfm)
+                return AjaxHelper.Seed(Ajax.Bad, "两个密码不一致！");
+            var user = await _userService.FirstAsync(f => f.UserName == _userProvider.UserName);
+            user.Password = password;
+            await _userService.UpdateAsync(user);
+            return AjaxHelper.Seed(Ajax.Ok);
+        }
+
+        /// <summary>
+        /// 上传头像
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        [HttpPost("UploadAvatar")]
+        public async  Task<JsonResult> UploadAvatar(IFormFile form)
+        {
+            if (form == null)
+                return AjaxHelper.Seed(Ajax.Bad, "图片不能为空！");
+            //user
+            var user = await _userService.FirstAsync(f => f.UserName == _userProvider.UserName);
+            //获取文件后缀名
+            var suf = Path.GetExtension(form.FileName);
+            //运行路径
+            var basePath = AppContext.BaseDirectory;
+            //文件名
+            string guid = Guid.NewGuid().ToString();
+            //虚拟路径
+            string vitualPath = "avatar/" + guid + suf;
+            //物理路径
+            string physicsPath = basePath + vitualPath;
+            //文件夹
+            string folder = basePath + "avatar/";
+
+            //文件夹是否存在不存在创建
+            if (!Directory.Exists(folder))
+            {
+                Directory.CreateDirectory(folder);
+            }
+            if (!System.IO.File.Exists(physicsPath))
+            {
+                using (var fs =System.IO.File.Create(physicsPath))
+                {
+                    await form.CopyToAsync(fs);
+                    //删除之前的图片释放资源
+                    if (!string.IsNullOrEmpty(user.Avatar))
+                    {
+                        var oldAvatar = basePath + user.Avatar;
+                        if (System.IO.File.Exists(oldAvatar))
+                        {
+                            System.IO.File.Delete(oldAvatar);
+                        }
+                    }
+                    user.Avatar = vitualPath;
+                    await _userService.UpdateAsync(user);
+                }
+            }
+            return AjaxHelper.Seed(Ajax.Ok);
+        }
         #endregion
     }
 }

@@ -42,7 +42,7 @@ namespace Zero.Core.Common.User
             return _jwt.GetJwtToken(input);
         }
 
-        public async Task<bool> SetToken(string userName,string token,TimeSpan? expiry=null)
+        public async Task<bool> SetToken(string userName, string token, TimeSpan? expiry = null)
         {
             return await RedisHelper.StringSetAsync(token, userName, expiry);
         }
@@ -62,6 +62,8 @@ namespace Zero.Core.Common.User
                 return "";
             }
         }
+
+        public string RequetAddress => _context.Request.Scheme + "://" + _context.Request.Host.ToUriComponent()+"/";
 
         public string GetToken(IHeaderDictionary headers)
         {

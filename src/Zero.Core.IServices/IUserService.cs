@@ -28,6 +28,11 @@ namespace Zero.Core.IServices
         /// <returns></returns>
         Task<UserInfo> GetUserInfo();
         /// <summary>
+        /// 获取用户详情
+        /// </summary>
+        /// <returns></returns>
+        Task<User> GetCenterInfo();
+        /// <summary>
         /// 设置用户角色
         /// </summary>
         /// <param name="userId"></param>
@@ -47,5 +52,7 @@ namespace Zero.Core.IServices
         /// <param name="userId"></param>
         /// <returns></returns>
         Task<List<int>> GetUserRole(int userId);
+
+        
     }
 }

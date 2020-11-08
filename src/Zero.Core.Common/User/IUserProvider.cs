@@ -19,6 +19,10 @@ namespace Zero.Core.Common.User
         /// </summary>
         string Token { get; }
         /// <summary>
+        /// 应用网址
+        /// </summary>
+        string RequetAddress { get; }
+        /// <summary>
         /// 获取请求头中的token
         /// </summary>
         /// <param name="headers"></param>

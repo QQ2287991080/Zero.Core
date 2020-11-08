@@ -243,6 +243,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Zero.Core.WebApi.Controllers.UserController.UserDetails">
+            <summary>
+            获取当前用户的具体信息
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Zero.Core.WebApi.Controllers.UserController.GetDataList(Zero.Core.Domain.Dtos.User.UserCondition)">
             <summary>
             分页获取数据
@@ -315,6 +321,21 @@
             获取用户绑定的角色
             </summary>
             <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.UserController.ResetPassword(System.String,System.String)">
+            <summary>
+            重置密码
+            </summary>
+            <param name="password"></param>
+            <param name="passwordCfm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.UserController.UploadAvatar(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            上传头像
+            </summary>
+            <param name="form"></param>
             <returns></returns>
         </member>
         <member name="T:Zero.Core.WebApi.Filters.AuthorizationFilter">

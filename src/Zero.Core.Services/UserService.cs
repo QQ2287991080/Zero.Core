@@ -50,6 +50,8 @@ namespace Zero.Core.Services
             _user = repository;
         }
 
+        
+
         public async Task<ListResult<User>> GetDataList(UserCondition condition)
         {
             Expression<Func<User, bool>> where = PredicateExtensions.True<User>();
@@ -105,7 +107,7 @@ namespace Zero.Core.Services
             {
                 IsSuperAdmin = roles.Any(a => a.Name == "SuperAdmin"),
                 Role = roleStr,
-                Avatar = user.Avatar,
+                Avatar = _userProvider.RequetAddress+ user.Avatar,
                 Menu = await ResolveMenu(menus),
                 MenuUrls = menuUrls,
                 PermissionCode = permission.Select(s => s.Code),
@@ -115,6 +117,16 @@ namespace Zero.Core.Services
                 UserName = user.UserName,
             };
             return userInfo;
+        }
+
+
+        public async Task<User> GetCenterInfo()
+        {
+            var userName = _userProvider.UserName;
+            var user = await base.FirstAsync(f => f.UserName == userName);
+            user.RoleStr = await _role.GetRoleName(user.Id);
+            user.Avatar = _userProvider.RequetAddress + user.Avatar;
+            return user;
         }
         async Task<List<OutputMenu>> ResolveMenu(IEnumerable<RoleMenu> menus)
         {
