@@ -28,6 +28,7 @@ using Zero.Core.WebApi.Filters;
 using Zero.Core.WebApi.Middlewares;
 using Zero.Core.WebApi.ServiceConfig;
 using Zero.Core.WebApi.ServiceExtensions;
+using Zero.Core.WebApi.StartupConfigExtensions;
 using Zero.Core.WebApi.StartupExtensions;
 #if DEBUG
 [assembly:ApiController]
@@ -136,11 +137,8 @@ namespace Zero.Core.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseStaticFiles(new StaticFileOptions()
-            {
-                FileProvider = new PhysicalFileProvider(AppContext.BaseDirectory + "avatar"),
-                RequestPath = "/avatar"
-            });
+            //头像文件引用
+            app.UseAvatar();
             //中间件错误捕获
             app.UseExceptionHandler(new ExceptionHandlerOptions
             {
