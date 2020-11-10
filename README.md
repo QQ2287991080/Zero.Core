@@ -52,7 +52,7 @@
 >![image](docs/Use/output.jpg)
 >* 5.准备EfCore迁移,首先打开程序包管理控制台
 >![image](docs/Use/efMigration.jpg)
->* 6.如果Zero.EfCore类库下有这个文件夹，请先删除
+>* 6.如果Zero.EfCore类库下有这个文件夹，请先删除  
 >![image](docs/Use/removeFolder.jpg)
 >* 7.查看appsetting.json下的sql配置  
 >![image](docs/Use/lookcon.png)
