@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using Zero.Core.Common.Helper;
 using Zero.Core.Common.Result;
 using Zero.Core.Common.Units;
 using Zero.Core.Common.User;
@@ -49,10 +50,12 @@ namespace Zero.Core.WebApi.Controllers
             {
                 return AjaxHelper.Seed(System.Net.HttpStatusCode.BadRequest, "用户名错误");
             }
-            if (user.Password != dto.Password)
+            string md5 = CommonHelper.MD5Encryption(dto.Password, user.Salt);
+            if (user.Password != md5)
             {
                 return AjaxHelper.Seed(System.Net.HttpStatusCode.BadRequest, "密码错误");
             }
+
             if (user.IsLock == true)
             {
                 return AjaxHelper.Seed(Ajax.Bad, "您的账号已被限制登录，请联系管理员！");
@@ -121,7 +124,13 @@ namespace Zero.Core.WebApi.Controllers
             if (string.IsNullOrEmpty(user.RealName))
                 user.RealName = user.UserName;
             if (string.IsNullOrEmpty(user.Password))
-                user.Password = "123456";
+            {
+                //get md5 password
+                string salt = CommonHelper.GetSalt();
+                string md5Pass = CommonHelper.MD5Encryption("123456", salt);
+                user.Password = md5Pass;
+                user.Salt = salt;
+            }
             var entity = await _userService.AddAsync(user);
             return AjaxHelper.Seed(Ajax.Ok, entity);
         }
@@ -252,8 +261,13 @@ namespace Zero.Core.WebApi.Controllers
         {
             if (password != passwordCfm)
                 return AjaxHelper.Seed(Ajax.Bad, "两个密码不一致！");
+            //get md5 password
+            string salt = CommonHelper.GetSalt();
+            string md5Pass = CommonHelper.MD5Encryption(password,salt);
+            //更新密码
             var user = await _userService.FirstAsync(f => f.UserName == _userProvider.UserName);
-            user.Password = password;
+            user.Password = md5Pass;
+            user.Salt = salt;
             await _userService.UpdateAsync(user);
             return AjaxHelper.Seed(Ajax.Ok);
         }
