@@ -42,7 +42,7 @@
 >✅AutoMapper 数据映射  
 >❎Quartz.Net任务调度  
 ## 7.使用
->* 1.首先将代码clone下来。
+>* 1.首先将代码clone下来。  
 >![image](docs/use/clone.png)  
 >* 2.代码下载好后把打开,如图  
 >![image](docs/use/solution.jpg)
