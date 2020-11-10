@@ -42,7 +42,30 @@
 >✅AutoMapper 数据映射  
 >❎Quartz.Net任务调度  
 ## 7.使用
-
+>* 1.首先将代码clone下来。
+>![image](docs/use/clone.png)  
+>* 2.代码下载好后把打开,如图  
+>![image](docs/use/solution.jpg)
+>* 3.右键解决方案->重新生成解决方案  
+>![image](docs/use/buildSolution.jpg)  
+>* 4.查看生成结果，确保没有错误  
+>![image](docs/use/output.jpg)
+>* 5.准备EfCore迁移,首先打开程序包管理控制台
+>![image](docs/use/efMigration.jpg)
+>* 6.如果Zero.EfCore类库下有这个文件夹，请先删除
+>![image](docs/use/removeFolder.jpg)
+>* 7.查看appsetting.json下的sql配置  
+>![image](docs/use/lookcon.png)
+>* 8.启用迁移
+>![image](docs/use/migration.gif)
+>* 9.查看数据库,打开数据库，查看efcore生成的数据库  
+>![image](docs/use/database.jpg)
+>* 10.初始化数据库脚本  
+>脚本文件[前往](https://github.com/QQ2287991080/Zero.Core/blob/master/docs/SqlData/dbData.sql)  
+>* 11.启动程序,调试接口
+>![image](docs/use/testApi.gif)  
+>成功接口说明就整个项目就跑通啦。😜  
+>如果您没有安装redis,那么需要先安装redis服务。[前往](https://www.runoob.com/redis/redis-tutorial.html)
 ## 8.交流
 >欢迎各位高手，进群友好讨论学习技术！  
 >QQ群：925362372
