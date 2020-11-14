@@ -36,7 +36,7 @@
 >✅Jwt用户权限  
 >✅Redis+Jwt用户登录保护  
 >✅Autofac依赖注入  
->❎SignalR实时推送全局错误日志  
+>✅SignalR实时推送全局错误日志  
 >✅Log4net 记录程序日志  
 >✅Swagger API接口文档  
 >✅AutoMapper 数据映射  

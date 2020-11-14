@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Zero.Core.Common.Helper
 {
-    public class LogHelper:ILogHelper
+    public class LogHelper : ILogHelper
     {
         readonly ILogger<LogHelper> _logger;
         public LogHelper(ILogger<LogHelper> logger)

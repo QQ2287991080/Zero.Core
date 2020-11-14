@@ -29,6 +29,12 @@ namespace Zero.Core.WebApi.Controllers.test
             _logger = logger;
         }
 
+        [HttpGet("setErr")]
+        public JsonResult SetErr()
+        {
+            throw new Exception("错误测试");
+        }
+
         /// <summary>
         /// 测试automapper
         /// </summary>

@@ -26,6 +26,7 @@ using System.IO;
 using System.Reflection;
 using Zero.Core.Common.User;
 using Zero.Core.WebApi.Filters;
+using Zero.Core.WebApi.Hubs;
 using Zero.Core.WebApi.Middlewares;
 using Zero.Core.WebApi.ServiceConfig;
 using Zero.Core.WebApi.ServiceExtensions;
@@ -49,6 +50,7 @@ namespace Zero.Core.WebApi
               .AddEnvironmentVariables();
             Configuration = builder.Build();
             Logger = LogManager.CreateRepository(Assembly.GetEntryAssembly(), typeof(log4net.Repository.Hierarchy.Hierarchy));
+            
             XmlConfigurator.Configure(Logger, new FileInfo("log4net.config"));
         }
         public static ILoggerRepository Logger { get; set; }
@@ -70,8 +72,18 @@ namespace Zero.Core.WebApi
             services.AddService();
             #region Framework
             //控制器配置
-            services.AddControllers()
+
             #region Newtonsoft Configure
+            JsonSerializerSettings settings = new JsonSerializerSettings()
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,//忽略循环引用
+                NullValueHandling = NullValueHandling.Include,//是否忽略空值引用
+                ContractResolver = new CamelCasePropertyNamesContractResolver(),//驼峰命名
+                DateFormatString = "yyyy-MM-dd HH:mm:ss"//时间格式化
+            };
+            #endregion
+            services.AddControllers()
+          
             .AddNewtonsoftJson(
                option =>
                {
@@ -80,7 +92,7 @@ namespace Zero.Core.WebApi
                    option.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();//驼峰命名
                    option.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";//时间格式化
                });
-            #endregion
+          
            
             /*
              *为控制器添加拦截器或验证等
@@ -107,6 +119,15 @@ namespace Zero.Core.WebApi
                 //.RequireAuthenticatedUser()
                 //.Build();
                 //options.Filters.Add(new AuthorizeFilter());
+            });
+
+            /*
+             *添加SignalR
+             */
+            MvcNewtonsoftJsonOptions options = new MvcNewtonsoftJsonOptions();
+            services.AddSignalR().AddNewtonsoftJsonProtocol(option =>
+            {
+                option.PayloadSerializerSettings = options.SerializerSettings;
             });
             #endregion
 
@@ -178,6 +199,7 @@ namespace Zero.Core.WebApi
             {
                 endpoints.MapControllers().RequireCors(CorsExtension.PolicyName);
                 //SignalR
+                endpoints.MapHub<ChatHub>("/chathub");
             });
             //swagger in  middleware
             app.UseSwaggerDocs();

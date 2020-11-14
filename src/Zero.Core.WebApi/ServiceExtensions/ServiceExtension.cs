@@ -24,6 +24,7 @@ namespace Zero.Core.WebApi.ServiceExtensions
             services.AddTransient<IJwtProvider, JwtHelper>();
             //log
             services.AddSingleton<ILogHelper, LogHelper>();
+            services.AddSingleton(new LogSignalRHelper());
             #endregion
             return services;
         }

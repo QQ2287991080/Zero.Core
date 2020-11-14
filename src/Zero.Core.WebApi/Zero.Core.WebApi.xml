@@ -4,6 +4,18 @@
         <name>Zero.Core.WebApi</name>
     </assembly>
     <members>
+        <member name="M:Zero.Core.WebApi.Controllers.ChatController.SendToClient(System.Nullable{System.DateTime})">
+            <summary>
+            被动向客户端发送日志信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.ChatController.GetDataList">
+            <summary>
+            获取日志信息
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Zero.Core.WebApi.Controllers.DictionariesController">
             <summary>
             字典数据
@@ -357,6 +369,61 @@
             <summary>
             全局异常处理器
             </summary>
+        </member>
+        <member name="M:Zero.Core.WebApi.Hubs.ChatHub.OnConnectedAsync">
+            <summary>
+            客户端连接事件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Hubs.ChatHub.OnDisconnectedAsync(System.Exception)">
+            <summary>
+            客户端断开事件
+            </summary>
+            <param name="exception"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Hubs.ChatHub.RecevieLog(System.Object)">
+            <summary>
+            向客户端推送日志消息
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Zero.Core.WebApi.Hubs.IChatClient">
+            <summary>
+            https://docs.microsoft.com/zh-cn/aspnet/core/signalr/hubs?view=aspnetcore-3.1
+            强类型中心
+            </summary>
+        </member>
+        <member name="M:Zero.Core.WebApi.Hubs.IChatClient.ReceiveMessage(System.String,System.String)">
+            <summary>
+            发送消息
+            </summary>
+            <param name="user">用户</param>
+            <param name="message">消息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Hubs.IChatClient.ReceiveMessage(System.Object)">
+            <summary>
+            发送消息
+            </summary>
+            <param name="message">消息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Hubs.IChatClient.ReceiveCaller(System.Object)">
+            <summary>
+            像调用（客户端）发送消息
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Hubs.IChatClient.ReceiveLog(System.Object)">
+            <summary>
+            发送日志信息
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
         </member>
         <member name="P:Zero.Core.WebApi.Mapper.UserDto.UserName">
             <summary>
