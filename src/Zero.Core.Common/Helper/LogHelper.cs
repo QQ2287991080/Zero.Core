@@ -31,4 +31,23 @@ namespace Zero.Core.Common.Helper
 
         void Info(string message, params object[] args);
     }
+
+
+
+    public class LoggerHelper
+    {
+        static ILogger<LogHelper> _logger;
+        public LoggerHelper(ILogger<LogHelper> logger)
+        {
+            _logger = logger;
+        }
+        public static void Error(Exception exception, string message, params object[] args)
+        {
+            _logger.LogError(exception, message, args);
+        }
+        public static void Error(string message, params object[] args)
+        {
+            _logger.LogError(message, args);
+        }
+    }
 }

@@ -32,6 +32,7 @@ namespace Zero.Core.WebApi.Middlewares
 
                 string message = $"错误信息=>【{contextFeature?.Error?.Message ?? "无"}】，【中间件错误=>🐕】";
 
+                //LoggerHelper.Error(message);
                 await context.Response.WriteAsync(JsonConvert.SerializeObject(new AjaxHelper.Result
                 {
                     ErrCode = HttpStatusCode.InternalServerError,

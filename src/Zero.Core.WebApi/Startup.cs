@@ -129,6 +129,7 @@ namespace Zero.Core.WebApi
             {
                 option.PayloadSerializerSettings = options.SerializerSettings;
             });
+            
             #endregion
 
             #region Extension
@@ -160,6 +161,7 @@ namespace Zero.Core.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+            //app.UseWebSockets();
             //头像文件引用
             app.UseAvatar();
             //中间件错误捕获

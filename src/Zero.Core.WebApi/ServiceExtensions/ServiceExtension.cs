@@ -25,6 +25,7 @@ namespace Zero.Core.WebApi.ServiceExtensions
             //log
             services.AddSingleton<ILogHelper, LogHelper>();
             services.AddSingleton(new LogSignalRHelper());
+            services.AddSingleton(typeof(LoggerHelper));
             #endregion
             return services;
         }
