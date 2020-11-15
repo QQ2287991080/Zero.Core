@@ -28,11 +28,15 @@ namespace Zero.Core.WebApi.Controllers.test
             _user = user;
             _logger = logger;
         }
-
+        /// <summary>
+        /// 设置一个错误
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
         [HttpGet("setErr")]
-        public JsonResult SetErr()
+        public JsonResult SetErr(string message)
         {
-            throw new Exception("错误测试");
+            throw new Exception(string.IsNullOrEmpty(message) ? "错误测试" : message);
         }
 
         /// <summary>

@@ -28,9 +28,9 @@ namespace Zero.Core.WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("SendToClient")]
-        public async Task<JsonResult> SendToClient(DateTime? time)
+        public async Task<JsonResult> SendToClient(DateTime? date)
         {
-            var data = LogSignalRHelper.Read(time);
+            var data = LogSignalRHelper.Read(date);
             await _hub.Clients.All.SendAsync("ReceiveLog", data);
             return AjaxHelper.Seed(Ajax.Ok);
         }

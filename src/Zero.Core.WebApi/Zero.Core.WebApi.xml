@@ -224,6 +224,13 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:Zero.Core.WebApi.Controllers.test.TestController.SetErr(System.String)">
+            <summary>
+            设置一个错误
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
         <member name="M:Zero.Core.WebApi.Controllers.test.TestController.testMapper">
             <summary>
             测试automapper
