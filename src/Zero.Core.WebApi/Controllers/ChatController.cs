@@ -42,7 +42,7 @@ namespace Zero.Core.WebApi.Controllers
         [HttpGet("GetDataList")]
         public async Task<JsonResult> GetDataList()
         {
-            var data = LogSignalRHelper.Read();
+            var data = await Task.Run(() => LogSignalRHelper.Read());
             return AjaxHelper.Seed(Ajax.Ok, data);
         }
     }
