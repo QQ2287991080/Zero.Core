@@ -27,9 +27,12 @@ namespace Zero.Core.Tasks
         {
             try
             {
-                //var service = _provider.CreateScope();
-                //var job= service.ServiceProvider.GetService(bundle.JobDetail.JobType) as IJob;
-                var job= _provider.GetService(bundle.JobDetail.JobType) as IJob;
+                //从Quartz.net的源码实现net core注入这一块能够发现，job实例是通过AddTransient加入容器中的
+                //还有自定义的JobFactory也需要单例注入，我觉的是因为如果不单例注入会导致Quartz使用默认的SimpleJobFactory
+                //从而导致这里的获取Job实例出问题。
+                var service = _provider.CreateScope();
+                var job = service.ServiceProvider.GetService(bundle.JobDetail.JobType) as IJob;
+                //var job= _provider.GetService(bundle.JobDetail.JobType) as IJob;
                 return job;
             }
             catch (Exception ex)

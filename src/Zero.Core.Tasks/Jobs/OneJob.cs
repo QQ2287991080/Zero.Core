@@ -9,9 +9,15 @@ namespace Zero.Core.Tasks.Jobs
 {
     public class OneJob : IJob
     {
-        public Task Execute(IJobExecutionContext context)
+        public async Task Execute(IJobExecutionContext context)
         {
-            throw new NotImplementedException();
+            var job = context.JobDetail;
+            var trigger = context.Trigger;
+            var executeCount = context.RefireCount;
+            await Task.Run(() =>
+            {
+                Console.WriteLine($"JobKye：【{job.Key}】，TriggerKey：【{trigger.Key}】,执行次数：{executeCount},执行时间：{DateTime.Now.ToString("yyyy-mm-dd hh:mm:ss fff")}");
+            });
         }
     }
 }

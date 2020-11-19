@@ -20,11 +20,15 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Quartz.Spi;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.IO;
 using System.Reflection;
 using Zero.Core.Common.User;
+using Zero.Core.Tasks;
+using Zero.Core.Tasks.Base;
+using Zero.Core.Tasks.Jobs;
 using Zero.Core.WebApi.Filters;
 using Zero.Core.WebApi.Hubs;
 using Zero.Core.WebApi.Middlewares;
@@ -61,6 +65,15 @@ namespace Zero.Core.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            /*
+             *Quartz
+             */
+
+            services.AddSingleton<IExample, JobManager>();
+            services.AddTransient<OneJob>();
+            services.AddSingleton<IJobFactory, ZeroFactory>();
+
             //services.AddDataProtection().ProtectKeysWithDpapi();
             /*
             *httpcontext ÒýÓÃ
