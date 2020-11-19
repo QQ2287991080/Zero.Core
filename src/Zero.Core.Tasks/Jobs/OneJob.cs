@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace Zero.Core.Tasks.Jobs
 {
+    [DisallowConcurrentExecution]
+    [PersistJobDataAfterExecution]
     public class OneJob : IJob
     {
         public async Task Execute(IJobExecutionContext context)
