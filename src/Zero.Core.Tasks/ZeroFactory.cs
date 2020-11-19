@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using Quartz.Simpl;
+using Microsoft.Extensions.Logging;
 
 namespace Zero.Core.Tasks
 {
@@ -18,9 +19,10 @@ namespace Zero.Core.Tasks
     public class ZeroFactory: IJobFactory
     {
         readonly IServiceProvider _provider;
-        public ZeroFactory(IServiceProvider provider)
+        public ZeroFactory(IServiceProvider provider,ILoggerFactory loggerFactory)
         {
             _provider = provider;
+            Quartz.Logging.LogContext.SetCurrentLogProvider(loggerFactory);
         }
 
         public  IJob NewJob(TriggerFiredBundle bundle, IScheduler scheduler)

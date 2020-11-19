@@ -22,6 +22,10 @@ namespace Zero.Core.WebApi
             CreateHostBuilder(args).Build().Run();
         }
 
+        //Quartz
+        //https://www.quartz-scheduler.net/documentation/quartz-3.x/packages/hosted-services-integration.html#using
+
+
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory())
