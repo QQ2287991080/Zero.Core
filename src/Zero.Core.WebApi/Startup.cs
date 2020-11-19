@@ -145,6 +145,7 @@ namespace Zero.Core.WebApi
             //automapper
             services.AddZeroAutoMapper();
             #endregion
+
         }
         /// <summary>
         /// autofac ½Ó¹Ü ioc
