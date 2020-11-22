@@ -48,6 +48,7 @@
     <ProjectReference Include="..\Zero.Core.EfCore\Zero.Core.EfCore.csproj" />
     <ProjectReference Include="..\Zero.Core.IRepositories\Zero.Core.IRepositories.csproj" />
     <ProjectReference Include="..\Zero.Core.IServices\Zero.Core.IServices.csproj" />
+    <ProjectReference Include="..\Zero.Core.Quartz\Zero.Core.Quartz.csproj" />
   </ItemGroup>
 
   <ItemGroup>

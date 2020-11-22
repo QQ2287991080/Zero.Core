@@ -129,11 +129,12 @@ namespace Zero.Core.WebApi
             {
                 option.PayloadSerializerSettings = options.SerializerSettings;
             });
-            
+
             #endregion
 
             #region Extension
-
+            //quartz
+            services.AddQuartz();
             //ef 
             services.AddEfDbContext();
             //swagger

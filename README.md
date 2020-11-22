@@ -40,7 +40,9 @@
 >✅Log4net 记录程序日志  
 >✅Swagger API接口文档  
 >✅AutoMapper 数据映射  
->❎Quartz.Net任务调度  
+>✅Quartz.Net任务调度  
+>❎钉钉集成  
+>❎Quartz同步钉钉部门和人员  
 ## 7.使用
 >* 1.首先将代码clone下来。  
 >![image](docs/Use/clone.png)  
@@ -69,6 +71,8 @@
 >*如果图片未加载出来您可以前往个人博客查看使用方法。*[前往](https://www.cnblogs.com/aqgy12138/p/13976257.html)  
 ## 8.系列博客
 >* [代码本地使用](https://www.cnblogs.com/aqgy12138/p/13976257.html)
+>* Quart篇  
+>   - [简单使用Quartz](https://www.cnblogs.com/aqgy12138/p/14011785.html)  
 ## 9.交流
 >欢迎各位高手，进群友好讨论学习技术！  
 >QQ群：925362372

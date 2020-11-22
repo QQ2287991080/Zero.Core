@@ -155,6 +155,30 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:Zero.Core.WebApi.Controllers.QuartzController.Start">
+            <summary>
+            开启任务调度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.QuartzController.Run">
+            <summary>
+            运行Job
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.QuartzController.PauseJob">
+            <summary>
+            暂停Job
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.QuartzController.ResumeJob">
+            <summary>
+            恢复Job
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Zero.Core.WebApi.Controllers.RoleController.GetMenuPermission">
             <summary>
             获取当前所有能够使用的菜单和权限
@@ -487,6 +511,11 @@
             .net 通用主机
             </summary>
             <param name="args"></param>
+        </member>
+        <member name="T:Zero.Core.WebApi.ServiceExtensions.JobExtension">
+            <summary>
+            Quartz 任务调度
+            </summary>
         </member>
         <member name="M:Zero.Core.WebApi.Startup.ConfigureContainer(Autofac.ContainerBuilder)">
             <summary>
