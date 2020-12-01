@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Zero.Core.Common.DingTalk;
 using Zero.Core.Common.Result;
 using Zero.Core.IServices;
 using Zero.Core.WebApi.Mapper;
@@ -18,15 +19,27 @@ namespace Zero.Core.WebApi.Controllers.test
         readonly IMapper _mapper;
         readonly IUserService _user;
         readonly ILogger<TestController> _logger;
+        readonly IDingTalkHandler _ding;
         public TestController(
             IMapper mapper,
             IUserService user,
-            ILogger<TestController> logger
+            ILogger<TestController> logger,
+            IDingTalkHandler ding
             )
         {
             _mapper = mapper;
             _user = user;
             _logger = logger;
+            _ding = ding;
+        }
+
+
+        [HttpGet("DingMessage")]
+        public JsonResult DingMessage(string msg)
+        {
+            var message = _ding.DingMessage.Create(a => a.UserList = "manager7692");
+            message.AddText(msg).SendMsg();
+            return AjaxHelper.Seed(Ajax.Ok);
         }
         /// <summary>
         /// 设置一个错误

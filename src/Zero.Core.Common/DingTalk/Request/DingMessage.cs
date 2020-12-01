@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Zero.Core.Common.DingTalk.Config;
 
 namespace Zero.Core.Common.DingTalk.Request
 {
-    public class DingMessage
+    public class DingMessage:DingAppConfig
     {
         public class Message
         {
@@ -20,85 +21,100 @@ namespace Zero.Core.Common.DingTalk.Request
         {
 
         }
-        string _userList;
-        OapiMessageCorpconversationAsyncsendV2Request.MsgDomain _msg;
-        OapiMessageCorpconversationAsyncsendV2Request _request;
-        IDingTalkClient _client;
-        //private  Queue<IDingTalkClient> 
-        private bool isQueue;
+        private Queue<IDingTalkClient> _queue;
+        private string _userList;
+        private bool _isQueue;
+        private DingMessage _message;
         public DingMessage Create(Action<Message> action)
         {
-            Message message = new Message();
-            action(message);
-            this.isQueue = message.IsQueue;
-            string userList = message.UserList;
-            //实例化dingtalk对象
-            _client = new DefaultDingTalkClient("https://oapi.dingtalk.com/topapi/message/corpconversation/asyncsend_v2");
-            //实例化请求
-            var request = new OapiMessageCorpconversationAsyncsendV2Request();
-            //接受消息人员
-            request.UseridList = userList;
-            //微应用凭证
-            request.AgentId = 1020597343;
-            //是否发送给企业所有人
-            request.ToAllUser = false;
-            //消息内容
-            //_msg = new OapiMessageCorpconversationAsyncsendV2Request.MsgDomain();
+            if (_message == null)
+                _message = new DingMessage();
+
+            Message msg = new Message();
+            action(msg);
+            this._isQueue = msg.IsQueue;
+            this._userList = msg.UserList;
             return this;
+
+            //Message message = new Message();
+            //action(message);
+            //this.isQueue = message.IsQueue;
+            //string userList = message.UserList;
+            ////实例化dingtalk对象
+            //_client = new DefaultDingTalkClient("https://oapi.dingtalk.com/topapi/message/corpconversation/asyncsend_v2");
+            ////实例化请求
+            //var request = new OapiMessageCorpconversationAsyncsendV2Request();
+            ////接受消息人员
+            //request.UseridList = userList;
+            ////微应用凭证
+            //request.AgentId = 1020597343;
+            ////是否发送给企业所有人
+            //request.ToAllUser = false;
+            ////消息内容
+            ////_msg = new OapiMessageCorpconversationAsyncsendV2Request.MsgDomain();
+            //return this;
         }
-        public void AddText(string content)
+        /// <summary>
+        /// 发送文本消息
+        /// </summary>
+        /// <param name="content"></param>
+        public DingMessage AddText(string content)
         {
-            _msg.Msgtype = "text";
+            OapiMessageCorpconversationAsyncsendV2Request.MsgDomain msg = new OapiMessageCorpconversationAsyncsendV2Request.MsgDomain();
+            msg.Msgtype = "text";
             //消息体
-            _msg.Text = new OapiMessageCorpconversationAsyncsendV2Request.TextDomain()
+            msg.Text = new OapiMessageCorpconversationAsyncsendV2Request.TextDomain()
             {
                 Content = content
             };
-            _request.Msg_ = _msg;
+            AddMsg(msg);
+            return this;
         }
         public void AddImage(string mediaId)
         {
-            _msg.Msgtype = "image";
+            OapiMessageCorpconversationAsyncsendV2Request.MsgDomain msg = new OapiMessageCorpconversationAsyncsendV2Request.MsgDomain();
+            msg.Msgtype = "image";
             //消息体
-            _msg.Image = new OapiMessageCorpconversationAsyncsendV2Request.ImageDomain()
+            msg.Image = new OapiMessageCorpconversationAsyncsendV2Request.ImageDomain()
             {
                 MediaId = mediaId
             };
-            _request.Msg_ = _msg;
         }
         public void AddVoice(string mediaId, string duration)
         {
-            _msg.Msgtype = "voice";
-            _msg.Voice = new OapiMessageCorpconversationAsyncsendV2Request.VoiceDomain
+            OapiMessageCorpconversationAsyncsendV2Request.MsgDomain msg = new OapiMessageCorpconversationAsyncsendV2Request.MsgDomain();
+            msg.Msgtype = "voice";
+            msg.Voice = new OapiMessageCorpconversationAsyncsendV2Request.VoiceDomain
             {
                 Duration = duration,
                 MediaId = mediaId
             };
-            _request.Msg_ = _msg;
         }
         public void AddFile(string mediaId)
         {
-            _msg.Msgtype = "file";
-            _msg.File = new OapiMessageCorpconversationAsyncsendV2Request.FileDomain()
+            OapiMessageCorpconversationAsyncsendV2Request.MsgDomain msg = new OapiMessageCorpconversationAsyncsendV2Request.MsgDomain();
+            msg.Msgtype = "file";
+            msg.File = new OapiMessageCorpconversationAsyncsendV2Request.FileDomain()
             {
                 MediaId = mediaId
             };
-            _request.Msg_ = _msg;
+          
         }
         public void AddLink(string messageUrl, string picUrl, string title, string text)
         {
-            _msg.Msgtype = "link";
-            _msg.Link = new OapiMessageCorpconversationAsyncsendV2Request.LinkDomain
+            OapiMessageCorpconversationAsyncsendV2Request.MsgDomain msg = new OapiMessageCorpconversationAsyncsendV2Request.MsgDomain();
+            msg.Msgtype = "link";
+            msg.Link = new OapiMessageCorpconversationAsyncsendV2Request.LinkDomain
             {
                 MessageUrl = messageUrl,
                 PicUrl = picUrl,
                 Text = text,
                 Title = title
             };
-            _request.Msg_ = _msg;
+         
         }
         /// <summary>
-        /// 
+        /// 发送OA消息
         /// </summary>
         /// <param name="messageUrl"></param>
         /// <param name="form"></param>
@@ -106,21 +122,53 @@ namespace Zero.Core.Common.DingTalk.Request
         /// <returns></returns>
         public void AddOA(Dictionary<string, string> form, string messageUrl = "", string pcMessageUrl = "")
         {
-            _msg.Msgtype = "oa";
+            OapiMessageCorpconversationAsyncsendV2Request.MsgDomain msg = new OapiMessageCorpconversationAsyncsendV2Request.MsgDomain();
+            msg.Msgtype = "oa";
             //form
             var domains = new List<OapiMessageCorpconversationAsyncsendV2Request.FormDomain>();
             foreach (var item in form)
             {
                 domains.Add(new OapiMessageCorpconversationAsyncsendV2Request.FormDomain() { Key = item.Key, Value = item.Value });
             }
-            _msg.Oa = new OapiMessageCorpconversationAsyncsendV2Request.OADomain
+            msg.Oa = new OapiMessageCorpconversationAsyncsendV2Request.OADomain
             {
                 MessageUrl = messageUrl,
                 PcMessageUrl = pcMessageUrl,
                 Head = new OapiMessageCorpconversationAsyncsendV2Request.HeadDomain(),
                 Body = new OapiMessageCorpconversationAsyncsendV2Request.BodyDomain { Form = domains }
             };
-            _request.Msg_ = _msg;
+           
+        }
+
+        private List<OapiMessageCorpconversationAsyncsendV2Request> _list;
+
+        public void SendMsg()
+        {
+            ////实例化dingtalk对象
+            var client = new DefaultDingTalkClient("https://oapi.dingtalk.com/topapi/message/corpconversation/asyncsend_v2");
+            foreach (var item in _list)
+            {
+                var rsp = client.Execute(item, base.AccessToken);
+                Console.WriteLine(rsp.Body);
+            }
+        }
+        private void AddMsg(OapiMessageCorpconversationAsyncsendV2Request.MsgDomain msg)
+        {
+            ////实例化dingtalk对象
+           // var client = new DefaultDingTalkClient("https://oapi.dingtalk.com/topapi/message/corpconversation/asyncsend_v2");
+            ////实例化请求
+            var request = new OapiMessageCorpconversationAsyncsendV2Request();
+            ////接受消息人员
+            request.UseridList = _userList;
+            ////微应用凭证
+            request.AgentId = base.AgentId;
+            ////是否发送给企业所有人
+            request.ToAllUser = false;
+            //消息内容
+            request.Msg_ = msg;
+            if (_list == null)
+                _list = new List<OapiMessageCorpconversationAsyncsendV2Request>();
+            _list.Add(request);
         }
     }
 }
