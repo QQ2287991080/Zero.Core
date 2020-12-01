@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Zero.Core.Common.Helper;
 
-namespace Zero.Core.Common.Units
+namespace Zero.Core.Common.Utils
 {
     /// <summary>
     /// Jwt 生成帮助类

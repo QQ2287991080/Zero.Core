@@ -13,4 +13,9 @@
     <PackageReference Include="StackExchange.Redis.Extensions.Newtonsoft" Version="6.3.5" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.8.0" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="topsdk-net-core">
+      <HintPath>..\sdk\topsdk-net-core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

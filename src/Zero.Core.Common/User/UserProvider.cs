@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Zero.Core.Common.Helper;
 using Zero.Core.Common.Redis;
-using Zero.Core.Common.Units;
+using Zero.Core.Common.Utils;
 
 namespace Zero.Core.Common.User
 {
@@ -98,5 +98,7 @@ namespace Zero.Core.Common.User
         {
             await RedisHelper.KeyDeleteAsync(Token);
         }
+
+       
     }
 }

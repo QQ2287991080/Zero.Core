@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Zero.Core.Common.Units;
+using Zero.Core.Common.Utils;
 
 namespace Zero.Core.Common.User
 {
