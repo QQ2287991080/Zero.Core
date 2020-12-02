@@ -3,6 +3,7 @@ using log4net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Zero.Core.Common.DingTalk;
@@ -33,12 +34,30 @@ namespace Zero.Core.WebApi.Controllers.test
             _ding = ding;
         }
 
-
+        /// <summary>
+        /// 测试钉钉消息
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <param name="isQueue"></param>
+        /// <returns></returns>
         [HttpGet("DingMessage")]
-        public JsonResult DingMessage(string msg)
+        public JsonResult DingMessage(string msg,bool isQueue=false)
         {
-            var message = _ding.DingMessage.Create(a => a.UserList = "manager7692");
-            message.AddText(msg).SendMsg();
+            var keys = new Dictionary<string, string>();
+            keys.Add("标题", DateTime.Now.ToString());
+            var message = _ding.DingMessage.Create(a => {
+                a.UserList = "manager7692";
+                a.IsQueue = isQueue;
+            });
+            message.AddText(msg)
+                .AddOA(keys)
+                .SendMsg();
+
+            Console.WriteLine($"发送消息个数：{message.Count}");
+            foreach (var item in message.Body)
+            {
+                Console.WriteLine($"消息结果：{item}");
+            }
             return AjaxHelper.Seed(Ajax.Ok);
         }
         /// <summary>
