@@ -145,6 +145,8 @@ namespace Zero.Core.WebApi
             services.AddZeroCors();
             //automapper
             services.AddZeroAutoMapper();
+            //¶¤¶¤
+            services.AddDingTalk();
             #endregion
         }
         /// <summary>
