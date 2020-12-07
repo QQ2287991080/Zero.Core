@@ -248,6 +248,14 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:Zero.Core.WebApi.Controllers.test.TestController.DingMessage(System.String,System.Boolean)">
+            <summary>
+            测试钉钉消息
+            </summary>
+            <param name="msg"></param>
+            <param name="isQueue"></param>
+            <returns></returns>
+        </member>
         <member name="M:Zero.Core.WebApi.Controllers.test.TestController.SetErr(System.String)">
             <summary>
             设置一个错误

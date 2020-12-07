@@ -17,10 +17,20 @@ namespace Zero.Core.Common.DingTalk
     {
         public DingTalkHandlder()
         {
-            this.DingMessage = new DingMessage();
         }
 
-        public DingMessage DingMessage { get;}
+        /// <summary>
+        /// 钉钉消息
+        /// </summary>
+        public DingMessage DingMessage => new DingMessage();
+        /// <summary>
+        /// 部门管理
+        /// </summary>
+        public DingDepartment Department => new DingDepartment();
+        /// <summary>
+        /// 用户管理
+        /// </summary>
+        public DingUserManager User => new DingUserManager();
 
     }
 }

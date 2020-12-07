@@ -16,8 +16,6 @@ namespace Zero.Core.Common.DingTalk.Config
         private static long _agentId;
         private static string _appKey;
         private static string _appSecret;
-
-        private static int _count;
         public long AgentId
         {
             get
@@ -39,7 +37,6 @@ namespace Zero.Core.Common.DingTalk.Config
                 if (string.IsNullOrEmpty(_appKey))
                 {
                     _appKey = AppsettingHelper.Get("DingTalk:AppKey") ?? throw new Exception("no dingtalk appKey in appseting。");
-                    _count++;
                 }
                 return _appKey;
             }
@@ -77,16 +74,15 @@ namespace Zero.Core.Common.DingTalk.Config
         
         public virtual string GetToken()
         {
-            Console.WriteLine(_count);
-            Console.WriteLine($"Appkey：【{this.AppKey}】");
-            Console.WriteLine($"AppSecret：【{ this.AppSecret}】");
+            //Console.WriteLine($"Appkey：【{this.AppKey}】");
+            //Console.WriteLine($"AppSecret：【{ this.AppSecret}】");
             IDingTalkClient client = new DefaultDingTalkClient("https://oapi.dingtalk.com/gettoken");
             OapiGettokenRequest request = new OapiGettokenRequest();
             request.Appkey = this.AppKey;
             request.Appsecret = this.AppSecret;
             request.SetHttpMethod("GET");//默认post请求,get请求需要主动指定
             OapiGettokenResponse response = client.Execute(request);
-            Console.WriteLine(response.Body);
+            //Console.WriteLine(response.Body);
             return response.AccessToken;
         }
     }
