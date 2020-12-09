@@ -41,7 +41,7 @@
 >✅Swagger API接口文档  
 >✅AutoMapper 数据映射  
 >✅Quartz.Net任务调度  
->❎钉钉集成  
+>✅钉钉集成  
 >❎Quartz同步钉钉部门和人员  
 ## 7.使用
 >* 1.首先将代码clone下来。  
