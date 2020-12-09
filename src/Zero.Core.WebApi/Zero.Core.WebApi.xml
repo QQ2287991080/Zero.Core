@@ -64,6 +64,49 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:Zero.Core.WebApi.Controllers.JobsController.GetDataList(Zero.Core.Domain.Dtos.Jobs.JobCondition)">
+            <summary>
+            获取任务列表
+            </summary>
+            <param name="condition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.JobsController.SameName(System.String,System.Int32)">
+            <summary>
+            判断名称是否重复
+            </summary>
+            <param name="name">任务名称</param>
+            <param name="id">任务id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.JobsController.Add(Zero.Core.Domain.Entities.Jobs)">
+            <summary>
+            新增任务
+            </summary>
+            <param name="jobs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.JobsController.Update(Zero.Core.Domain.Entities.Jobs)">
+            <summary>
+            更新任务信息
+            </summary>
+            <param name="jobs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.JobsController.Details(System.Int32)">
+            <summary>
+            任务详情
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.JobsController.Delete(System.Int32)">
+            <summary>
+            删除任务
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:Zero.Core.WebApi.Controllers.MenuController.GetAllMenu">
             <summary>
             返回所有可用菜单，用于角色权限操作
@@ -161,19 +204,19 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Zero.Core.WebApi.Controllers.QuartzController.Run">
+        <member name="M:Zero.Core.WebApi.Controllers.QuartzController.Run(System.Int32)">
             <summary>
             运行Job
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Zero.Core.WebApi.Controllers.QuartzController.PauseJob">
+        <member name="M:Zero.Core.WebApi.Controllers.QuartzController.PauseJob(System.Int32)">
             <summary>
             暂停Job
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Zero.Core.WebApi.Controllers.QuartzController.ResumeJob">
+        <member name="M:Zero.Core.WebApi.Controllers.QuartzController.ResumeJob(System.Int32)">
             <summary>
             恢复Job
             </summary>

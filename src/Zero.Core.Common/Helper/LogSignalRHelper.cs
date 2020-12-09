@@ -20,7 +20,7 @@ namespace Zero.Core.Common.Helper
         readonly object _lock = new object();
         public LogSignalRHelper()
         {
-            Console.WriteLine("LogSignalRHelper初始化！");
+            //Console.WriteLine("LogSignalRHelper初始化！");
             lock (_lock)
             {
                 if (_lock == null)

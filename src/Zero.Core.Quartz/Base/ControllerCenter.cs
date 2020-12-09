@@ -7,7 +7,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Zero.Core.Quartz.Jobs;
+using Zero.Core.Quartz.Job;
 
 namespace Zero.Core.Quartz.Base
 {

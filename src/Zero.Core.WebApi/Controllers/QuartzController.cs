@@ -4,19 +4,27 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 using Zero.Core.Common.Result;
-using Zero.Core.Quartz.Base;
+using Zero.Core.IServices;
+using Zero.Core.Quartz.QuartzCenter;
 
 namespace Zero.Core.WebApi.Controllers
 {
+    [SwaggerTag("任务调度管理")]
     [Route("api/[controller]")]
     [ApiController]
     public class QuartzController : ControllerBase
     {
         readonly IControllerCenter _center;
-        public QuartzController(IControllerCenter center)
+        readonly IJobService _job;
+        public QuartzController(
+            IControllerCenter center,
+            IJobService job
+            )
         {
             _center = center;
+            _job = job;
         }
         /// <summary>
         /// 开启任务调度
@@ -33,19 +41,25 @@ namespace Zero.Core.WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("Run")]
-        public async Task<JsonResult> Run()
+        public async Task<JsonResult> Run(int id)
         {
-            await _center.RunJob();
-            return AjaxHelper.Seed(Ajax.Ok);
+            var job = await _job.FirstAsync(f => f.Id == id);
+            if (job == null)
+                return AjaxHelper.Seed(Ajax.Bad, "任务不存在！");
+            var message= await _center.RunJob(job);
+            return AjaxHelper.Seed(Ajax.Ok,message,0);
         }
         /// <summary>
         /// 暂停Job
         /// </summary>
         /// <returns></returns>
         [HttpGet("PauseJob")]
-        public async Task<JsonResult> PauseJob()
+        public async Task<JsonResult> PauseJob(int id)
         {
-            await _center.PauseJob();
+            var job = await _job.FirstAsync(f => f.Id == id);
+            if (job == null)
+                return AjaxHelper.Seed(Ajax.Bad, "任务不存在！");
+             await _center.PauseJob(job);
             return AjaxHelper.Seed(Ajax.Ok);
         }
         /// <summary>
@@ -53,9 +67,12 @@ namespace Zero.Core.WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("ResumeJob")]
-        public async Task<JsonResult> ResumeJob()
+        public async Task<JsonResult> ResumeJob(int id)
         {
-            await _center.ResumeJob();
+            var job = await _job.FirstAsync(f => f.Id == id);
+            if (job == null)
+                return AjaxHelper.Seed(Ajax.Bad, "任务不存在！");
+            await _center.ResumeJob(job);
             return AjaxHelper.Seed(Ajax.Ok);
         }
     }

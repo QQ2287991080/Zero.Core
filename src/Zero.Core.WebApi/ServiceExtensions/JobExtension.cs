@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Zero.Core.Quartz.Base;
 using Zero.Core.Quartz.Factory;
-using Zero.Core.Quartz.Jobs;
+using Zero.Core.Quartz.Job;
+using Zero.Core.Quartz.QuartzCenter;
 
 namespace Zero.Core.WebApi.ServiceExtensions
 {
@@ -18,7 +18,6 @@ namespace Zero.Core.WebApi.ServiceExtensions
     {
         public static IServiceCollection AddQuartz(this IServiceCollection services)
         {
-
             //自定义Job工厂
             services.AddSingleton<IJobFactory, ZeroJobFactory>();
             //任务调度控制中心

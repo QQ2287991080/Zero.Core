@@ -41,5 +41,6 @@ namespace Zero.Core.EfCore
         public DbSet<Dictionaries> Dictionaries { get; set; }
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<RolePermission> RolePermissions { get; set; }
+        public DbSet<Jobs>  Jobs { get; set; }
     }
 }

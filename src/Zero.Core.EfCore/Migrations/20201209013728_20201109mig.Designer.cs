@@ -10,8 +10,8 @@ using Zero.Core.EfCore;
 namespace Zero.Core.EfCore.Migrations
 {
     [DbContext(typeof(EfCoreDbContext))]
-    [Migration("20201022074156_mig20201022")]
-    partial class mig20201022
+    [Migration("20201209013728_20201109mig")]
+    partial class _20201109mig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -44,20 +44,85 @@ namespace Zero.Core.EfCore.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Memo")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(1000)")
+                        .HasMaxLength(1000);
 
                     b.Property<DateTime?>("ModifyTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
 
                     b.Property<int>("Sort")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Dictionaries");
+                    b.ToTable("T_Dictionaries");
+                });
+
+            modelBuilder.Entity("Zero.Core.Domain.Entities.Jobs", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AssemblyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClassName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeleteTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("EndTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ExecuteCount")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("JobGroup")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JobKey")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("LastTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ModifyTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Remark")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("StartTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TriggerKey")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("T_Jobs");
                 });
 
             modelBuilder.Entity("Zero.Core.Domain.Entities.Menu", b =>
@@ -111,6 +176,55 @@ namespace Zero.Core.EfCore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("T_Menu");
+                });
+
+            modelBuilder.Entity("Zero.Core.Domain.Entities.Permission", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<DateTime>("CreateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeleteTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsAllow")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Memo")
+                        .HasColumnType("nvarchar(1000)")
+                        .HasMaxLength(1000);
+
+                    b.Property<int>("MenuId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifyTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Code")
+                        .IsUnique();
+
+                    b.HasIndex("MenuId");
+
+                    b.ToTable("T_Permission");
                 });
 
             modelBuilder.Entity("Zero.Core.Domain.Entities.Role", b =>
@@ -177,6 +291,36 @@ namespace Zero.Core.EfCore.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("T_RoleMenu");
+                });
+
+            modelBuilder.Entity("Zero.Core.Domain.Entities.RolePermission", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeleteTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifyTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Pid")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("T_RolePermission");
                 });
 
             modelBuilder.Entity("Zero.Core.Domain.Entities.User", b =>
@@ -273,6 +417,15 @@ namespace Zero.Core.EfCore.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("T_UserRole");
+                });
+
+            modelBuilder.Entity("Zero.Core.Domain.Entities.Permission", b =>
+                {
+                    b.HasOne("Zero.Core.Domain.Entities.Menu", "Menu")
+                        .WithMany("Permissions")
+                        .HasForeignKey("MenuId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Zero.Core.Domain.Entities.RoleMenu", b =>
