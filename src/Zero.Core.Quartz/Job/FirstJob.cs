@@ -13,13 +13,15 @@ namespace Zero.Core.Quartz.Job
     public class FirstJob : IJob
     {
         readonly IUserService _user;
-        public FirstJob(IUserService user)
+        readonly IJobService _job;
+        public FirstJob(IUserService user, IJobService job)
         {
             _user = user;
+            _job = job;
         }
         public async Task Execute(IJobExecutionContext context)
         {
-            await Task.Run(() =>
+            await Task.Run(async () =>
             {
                 Console.WriteLine("First Job");
                 var userCount = _user.Query().Count();
@@ -28,10 +30,19 @@ namespace Zero.Core.Quartz.Job
                 var jobDetails = context.JobDetail;
                 //触发器的信息
                 var trigger = context.Trigger;
-                Console.WriteLine($"JobKey：{jobDetails.Key}，Group：{jobDetails.Key.Group}\r\n" +
+                string keyName = jobDetails.Key.Name;
+                Console.WriteLine($"JobKey：{keyName}，Group：{jobDetails.Key.Group}\r\n" +
                     $"Trigger：{trigger.Key}\r\n" +
                     $"RunTime：{context.JobRunTime}\r\n" +
                     $"ExecuteTime：{DateTime.Now}");
+
+                var job = await _job.FirstAsync(w => w.JobKey == keyName);
+                if (job != null)
+                {
+                    job.ExecuteCount++;
+                    job.LastTime = DateTime.Now;
+                    await _job.UpdateAsync(job);
+                }
             });
         }
     }

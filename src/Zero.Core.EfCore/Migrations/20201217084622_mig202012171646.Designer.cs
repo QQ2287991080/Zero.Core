@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Zero.Core.EfCore;
 
 namespace Zero.Core.EfCore.Migrations
 {
     [DbContext(typeof(EfCoreDbContext))]
-    partial class EfCoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201217084622_mig202012171646")]
+    partial class mig202012171646
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -87,9 +89,6 @@ namespace Zero.Core.EfCore.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("ExecuteCount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Interval")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsDelete")

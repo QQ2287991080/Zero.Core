@@ -325,6 +325,26 @@
             状态
             </summary>
         </member>
+        <member name="P:Zero.Core.Domain.Entities.Jobs.TriggerType">
+            <summary>
+            触发器类型
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.Jobs.CronExpression">
+            <summary>
+            Cron表达式
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.Jobs.TriggerInterval">
+            <summary>
+            触发器时间间隔
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.Jobs.Interval">
+            <summary>
+            间隔
+            </summary>
+        </member>
         <member name="T:Zero.Core.Domain.Entities.Menu">
             <summary>
             菜单表
@@ -548,6 +568,43 @@
         <member name="F:Zero.Core.Domain.Enums.JobStatus.error">
             <summary>
             异常
+            </summary>
+        </member>
+        <member name="T:Zero.Core.Domain.Enums.TriggerInterval">
+            <summary>
+            触发器时间的形式
+            </summary>
+        </member>
+        <member name="F:Zero.Core.Domain.Enums.TriggerInterval.seconds">
+            <summary>
+            秒
+            </summary>
+        </member>
+        <member name="F:Zero.Core.Domain.Enums.TriggerInterval.minutes">
+            <summary>
+            分
+            </summary>
+        </member>
+        <member name="F:Zero.Core.Domain.Enums.TriggerInterval.hours">
+            <summary>
+            时
+            </summary>
+        </member>
+        <member name="T:Zero.Core.Domain.Enums.TriggerType">
+            <summary>
+            触发器类型
+            如果您需要一个基于类似于日历的概念而不是根据SimpleTrigger的确切间隔重复发生的工作解雇时间表，则CronTriggers通常比SimpleTrigger有用。
+            如果您需要在特定的时间或特定的时间准确执行一次作业，然后在特定的时间间隔重复执行一次，SimpleTrigger应该可以满足您的调度需求。
+            </summary>
+        </member>
+        <member name="F:Zero.Core.Domain.Enums.TriggerType.simple">
+            <summary>
+            simple
+            </summary>
+        </member>
+        <member name="F:Zero.Core.Domain.Enums.TriggerType.cron">
+            <summary>
+            cron
             </summary>
         </member>
     </members>

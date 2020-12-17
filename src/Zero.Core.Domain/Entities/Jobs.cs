@@ -17,6 +17,8 @@ namespace Zero.Core.Domain.Entities
         public Jobs()
         {
             this.Status = JobStatus.no;
+            this.TriggerInterval = TriggerInterval.seconds;
+            this.TriggerType = TriggerType.simple;
         }
         /// <summary>
         /// 任务名称
@@ -66,5 +68,21 @@ namespace Zero.Core.Domain.Entities
         /// 状态
         /// </summary>
         public JobStatus Status { get; set; }
+        /// <summary>
+        /// 触发器类型
+        /// </summary>
+        public TriggerType TriggerType { get; set; }
+        /// <summary>
+        /// Cron表达式
+        /// </summary>
+        public string CronExpression { get; set; }
+        /// <summary>
+        /// 触发器时间间隔
+        /// </summary>
+        public TriggerInterval TriggerInterval  { get; set; }
+        /// <summary>
+        /// 间隔
+        /// </summary>
+        public int Interval { get; set; }
     }
 }

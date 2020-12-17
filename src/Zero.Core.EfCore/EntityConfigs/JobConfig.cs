@@ -26,6 +26,11 @@ namespace Zero.Core.EfCore.EntityConfigs
             builder.Property(a => a.AssemblyName);
             builder.Property(a => a.ClassName);
             builder.Property(a => a.Status);
+
+            builder.Property(a => a.TriggerType);
+            builder.Property(a => a.TriggerInterval);
+            builder.Property(a => a.CronExpression);
+            builder.Property(a => a.Interval);
         }
     }
 }
