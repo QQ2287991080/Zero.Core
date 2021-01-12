@@ -295,21 +295,6 @@
             结束时间，结束时间为空则是永久执行
             </summary>
         </member>
-        <member name="P:Zero.Core.Domain.Entities.Jobs.JobKey">
-            <summary>
-            Job的唯一值
-            </summary>
-        </member>
-        <member name="P:Zero.Core.Domain.Entities.Jobs.JobGroup">
-            <summary>
-            Job的组别
-            </summary>
-        </member>
-        <member name="P:Zero.Core.Domain.Entities.Jobs.TriggerKey">
-            <summary>
-            触发器的标识
-            </summary>
-        </member>
         <member name="P:Zero.Core.Domain.Entities.Jobs.AssemblyName">
             <summary>
             程序集名称
@@ -340,9 +325,24 @@
             触发器时间间隔
             </summary>
         </member>
-        <member name="P:Zero.Core.Domain.Entities.Jobs.Interval">
+        <member name="P:Zero.Core.Domain.Entities.Jobs.Intervals">
             <summary>
             间隔
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.Jobs.JobKey">
+            <summary>
+            Job的唯一值
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.Jobs.JobGroup">
+            <summary>
+            Job的组别
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.Jobs.TriggerKey">
+            <summary>
+            触发器的标识
             </summary>
         </member>
         <member name="T:Zero.Core.Domain.Entities.Menu">

@@ -33,8 +33,8 @@ namespace Zero.Core.WebApi.Controllers
         [HttpGet("Start")]
         public async Task<JsonResult> Start()
         {
-            await _center.Start();
-            return AjaxHelper.Seed(Ajax.Ok);
+            string message = await _center.Start();
+            return AjaxHelper.Seed(Ajax.Ok,message);
         }
         /// <summary>
         /// 运行Job
@@ -47,7 +47,7 @@ namespace Zero.Core.WebApi.Controllers
             if (job == null)
                 return AjaxHelper.Seed(Ajax.Bad, "任务不存在！");
             var message= await _center.RunJob(job);
-            return AjaxHelper.Seed(Ajax.Ok,message,0);
+            return AjaxHelper.Seed(Ajax.Ok,message);
         }
         /// <summary>
         /// 暂停Job
@@ -59,8 +59,8 @@ namespace Zero.Core.WebApi.Controllers
             var job = await _job.FirstAsync(f => f.Id == id);
             if (job == null)
                 return AjaxHelper.Seed(Ajax.Bad, "任务不存在！");
-             await _center.PauseJob(job);
-            return AjaxHelper.Seed(Ajax.Ok);
+            string message = await _center.PauseJob(job);
+            return AjaxHelper.Seed(Ajax.Ok,message);
         }
         /// <summary>
         /// 恢复Job
@@ -72,8 +72,8 @@ namespace Zero.Core.WebApi.Controllers
             var job = await _job.FirstAsync(f => f.Id == id);
             if (job == null)
                 return AjaxHelper.Seed(Ajax.Bad, "任务不存在！");
-            await _center.ResumeJob(job);
-            return AjaxHelper.Seed(Ajax.Ok);
+            string message= await _center.ResumeJob(job);
+            return AjaxHelper.Seed(Ajax.Ok, message);
         }
     }
 }

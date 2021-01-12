@@ -36,7 +36,7 @@ namespace Zero.Core.Quartz.Job
                     $"RunTime：{context.JobRunTime}\r\n" +
                     $"ExecuteTime：{DateTime.Now}");
 
-                var job = await _job.FirstAsync(w => w.JobKey == keyName);
+                var job = await _job.FirstAsync(w => w.Id == Convert.ToInt32(jobDetails.Key.Name));
                 if (job != null)
                 {
                     job.ExecuteCount++;

@@ -89,19 +89,11 @@ namespace Zero.Core.EfCore.Migrations
                     b.Property<int>("ExecuteCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("Interval")
+                    b.Property<int>("Intervals")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
-
-                    b.Property<string>("JobGroup")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("JobKey")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("LastTime")
                         .HasColumnType("datetime2");
@@ -125,10 +117,6 @@ namespace Zero.Core.EfCore.Migrations
 
                     b.Property<int>("TriggerInterval")
                         .HasColumnType("int");
-
-                    b.Property<string>("TriggerKey")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TriggerType")
                         .HasColumnType("int");

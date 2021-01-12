@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Threading.Tasks;
 using Zero.Core.Domain.Entities.Base;
 using Zero.Core.EfCore;
@@ -107,7 +109,7 @@ namespace Zero.Core.Repositories.Basee
                         default:
                             break;
                     }
-                    foreach (var entityItem in entityTypeProperty)
+                    foreach (var entityItem in entityTypeProperty.Where(w => w.GetCustomAttribute<NotMappedAttribute>() == null))
                     {
                         if (entityItem.Name == item.Name)
                         {

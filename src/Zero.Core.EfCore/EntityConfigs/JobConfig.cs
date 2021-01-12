@@ -20,9 +20,9 @@ namespace Zero.Core.EfCore.EntityConfigs
             builder.Property(a => a.ExecuteCount).IsRequired();
             builder.Property(a => a.StartTime);
             builder.Property(a => a.EndTime);
-            builder.Property(a => a.JobKey).IsRequired();
-            builder.Property(a => a.JobGroup).IsRequired();
-            builder.Property(a => a.TriggerKey).IsRequired();
+            //builder.Property(a => a.JobKey).IsRequired();
+            //builder.Property(a => a.JobGroup).IsRequired();
+            //builder.Property(a => a.TriggerKey).IsRequired();
             builder.Property(a => a.AssemblyName);
             builder.Property(a => a.ClassName);
             builder.Property(a => a.Status);
@@ -30,7 +30,7 @@ namespace Zero.Core.EfCore.EntityConfigs
             builder.Property(a => a.TriggerType);
             builder.Property(a => a.TriggerInterval);
             builder.Property(a => a.CronExpression);
-            builder.Property(a => a.Interval);
+            builder.Property(a => a.Intervals);
         }
     }
 }

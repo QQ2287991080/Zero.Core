@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,18 +45,7 @@ namespace Zero.Core.Domain.Entities
         /// 结束时间，结束时间为空则是永久执行
         /// </summary>
         public DateTime? EndTime { get; set; }
-        /// <summary>
-        /// Job的唯一值
-        /// </summary>
-        public string JobKey { get; set; }
-        /// <summary>
-        /// Job的组别
-        /// </summary>
-        public string JobGroup { get; set; }
-        /// <summary>
-        /// 触发器的标识
-        /// </summary>
-        public string TriggerKey { get; set; }
+
         /// <summary>
         /// 程序集名称
         /// </summary>
@@ -83,6 +73,42 @@ namespace Zero.Core.Domain.Entities
         /// <summary>
         /// 间隔
         /// </summary>
-        public int Interval { get; set; }
+        public int Intervals { get; set; }
+
+
+        /// <summary>
+        /// Job的唯一值
+        /// </summary>
+        [NotMapped]
+        public string JobKey
+        {
+            get
+            {
+                return Id.ToString();
+            }
+        }
+        /// <summary>
+        /// Job的组别
+        /// </summary>
+        [NotMapped]
+        public string JobGroup
+        {
+            get
+            {
+                return "group" + Id;
+            }
+        }
+        /// <summary>
+        /// 触发器的标识
+        /// </summary>
+        [NotMapped]
+        public string TriggerKey
+        {
+            get
+            {
+                return "trigger" + Id;
+            }
+        }
+
     }
 }

@@ -79,12 +79,17 @@ namespace Zero.Core.WebApi.Controllers
             info.AssemblyName = jobs.AssemblyName;
             info.ClassName = jobs.ClassName;
             info.EndTime = jobs.EndTime;
-            info.JobGroup = jobs.JobGroup;
-            info.JobKey = jobs.JobKey;
+            
             info.Remark = jobs.Remark;
             info.StartTime = jobs.StartTime;
-            info.TriggerKey = jobs.TriggerKey;
+            //info.TriggerKey = jobs.TriggerKey;
+            //info.JobGroup = jobs.JobGroup;
+            //info.JobKey = jobs.JobKey;
             info.Status = JobStatus.no;
+            info.Intervals = jobs.Intervals;
+            info.TriggerType = jobs.TriggerType;
+            info.TriggerInterval = jobs.TriggerInterval;
+            info.CronExpression = jobs.CronExpression;
              await _job.UpdateAsync(info);
             return AjaxHelper.Seed(Ajax.Ok);
         }

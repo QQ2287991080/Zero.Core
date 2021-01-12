@@ -194,7 +194,7 @@ namespace Zero.Core.Quartz.QuartzCenter
             builder.WithSimpleSchedule(s =>
             {
                 var interval = jobInfo.TriggerInterval;
-                var count = jobInfo.Interval;
+                var count = jobInfo.Intervals;
                 if (interval == TriggerInterval.seconds)
                     s.WithIntervalInSeconds(count);
                 else if (interval == TriggerInterval.minutes)

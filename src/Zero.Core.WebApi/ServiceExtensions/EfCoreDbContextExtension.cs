@@ -8,16 +8,25 @@ using System.Threading.Tasks;
 using Zero.Core.Common.Helper;
 using Zero.Core.EfCore;
 
+
 namespace Zero.Core.WebApi.ServiceConfig
 {
     public static class EfCoreDbContextExtension
     {
         public static IServiceCollection AddEfDbContext(this IServiceCollection services)
         {
-            var conStr = AppsettingHelper.Get("DataConnection", "SqlServer");
+            string dbType = AppsettingHelper.Get("DataConnection", "DbType");
+            var conStr = AppsettingHelper.Get("DataConnection", dbType);
             services.AddDbContext<EfCoreDbContext>(option =>
             {
-                option.UseSqlServer(conStr);
+                if (dbType == "SqlServer")
+                {
+                    option.UseSqlServer(conStr);
+                }
+                else
+                {
+                    option.UseMySQL(conStr);
+                }
             });
 
             //services.AddScoped<EfCoreDbContext>();
