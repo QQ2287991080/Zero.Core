@@ -32,7 +32,7 @@
 >✅菜单管理  
 >✅字典数据管理  
 >✅EfCore+SqlServer  
->❎EfCore+MySql  
+>✅EfCore+MySql  
 >✅Jwt用户权限  
 >✅Redis+Jwt用户登录保护  
 >✅Autofac依赖注入  
@@ -73,6 +73,8 @@
 >* [代码本地使用](https://www.cnblogs.com/aqgy12138/p/13976257.html)
 >* Quart篇  
 >   - [简单使用Quartz](https://www.cnblogs.com/aqgy12138/p/14011785.html)  
+>* EFCore
+>   - [EFCore配置MySql](https://www.cnblogs.com/aqgy12138/p/14175958.html)
 ## 9.交流
 >欢迎各位高手，进群友好讨论学习技术！  
 >QQ群：925362372
