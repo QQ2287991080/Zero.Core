@@ -61,7 +61,7 @@
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="echo $(ConfigurationName)&#xD;&#xA;if  &quot;$(ConfigurationName)&quot;==&quot;Debug&quot; (&#xD;&#xA;xcopy &quot;$(SolutionDir)Zero.Core.Repositories\bin\Debug\netcoreapp3.1\Zero.Core.Repositories.dll&quot; &quot;$(ProjectDir)$(OutDir)&quot; /y&#xD;&#xA;xcopy &quot;$(SolutionDir)Zero.Core.Services\bin\Debug\netcoreapp3.1\Zero.Core.Services.dll&quot; &quot;$(ProjectDir)$(OutDir)&quot; /y&#xD;&#xA;) else (&#xD;&#xA;xcopy &quot;$(SolutionDir)Zero.Core.Repositories\bin\Debug\netcoreapp3.1\Zero.Core.Repositories.dll&quot; &quot;$(ProjectDir)$(OutDir)\publish&quot; /y&#xD;&#xA;xcopy &quot;$(SolutionDir)Zero.Core.Services\bin\Debug\netcoreapp3.1\Zero.Core.Services.dll&quot; &quot;$(ProjectDir)$(OutDir)\publish&quot; /y&#xD;&#xA;)" />
+    <Exec Command="if &quot;$(ConfigurationName)&quot;==&quot;Debug&quot; (&#xD;&#xA;xcopy &quot;$(SolutionDir)Zero.Core.Repositories\bin\Debug\netcoreapp3.1\Zero.Core.Repositories.dll&quot; &quot;$(ProjectDir)$(OutDir)&quot; /y&#xD;&#xA;xcopy &quot;$(SolutionDir)Zero.Core.Services\bin\Debug\netcoreapp3.1\Zero.Core.Services.dll&quot; &quot;$(ProjectDir)$(OutDir)&quot; /y&#xD;&#xA;) else (&#xD;&#xA;xcopy &quot;$(SolutionDir)Zero.Core.Repositories\bin\Debug\netcoreapp3.1\Zero.Core.Repositories.dll&quot; &quot;$(ProjectDir)$(OutDir)\publish&quot; /y&#xD;&#xA;xcopy &quot;$(SolutionDir)Zero.Core.Services\bin\Debug\netcoreapp3.1\Zero.Core.Services.dll&quot; &quot;$(ProjectDir)$(OutDir)\publish&quot; /y&#xD;&#xA;)" />
   </Target>
 
 

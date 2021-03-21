@@ -198,6 +198,47 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:Zero.Core.WebApi.Controllers.PhotoManagerController.GetDataList(Zero.Core.Domain.Dtos.PhotoManagerCondition)">
+            <summary>
+            图片列表 IsPage 默认为true分页，false为不分页。
+            </summary>
+            <param name="condition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.PhotoManagerController.Add(Zero.Core.WebApi.Controllers.PhotoManagerInput)">
+            <summary>
+            新增图片
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.PhotoManagerController.Delete(System.Int32)">
+            <summary>
+            删除图片
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Zero.Core.WebApi.Controllers.PhotoManagerInput.Title">
+            <summary>
+            图片标题
+            </summary>
+        </member>
+        <member name="P:Zero.Core.WebApi.Controllers.PhotoManagerInput.Photo">
+            <summary>
+            图片，每次上传一张
+            </summary>
+        </member>
+        <member name="P:Zero.Core.WebApi.Controllers.PhotoManagerInput.PhotoClass">
+            <summary>
+            图片样式
+            </summary>
+        </member>
+        <member name="P:Zero.Core.WebApi.Controllers.PhotoManagerInput.Link">
+            <summary>
+            页面跳转链接
+            </summary>
+        </member>
         <member name="M:Zero.Core.WebApi.Controllers.QuartzController.Start">
             <summary>
             开启任务调度
@@ -430,6 +471,14 @@
             上传头像
             </summary>
             <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zero.Core.WebApi.Controllers.UtilController.GetAvatar(System.Int32,System.Int32)">
+            <summary>
+            获取头像
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
             <returns></returns>
         </member>
         <member name="T:Zero.Core.WebApi.Filters.AuthorizationFilter">

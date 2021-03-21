@@ -125,6 +125,11 @@
             页数
             </summary>
         </member>
+        <member name="P:Zero.Core.Domain.Dtos.PhotoManagerCondition.IsPage">
+            <summary>
+            是否分页
+            </summary>
+        </member>
         <member name="P:Zero.Core.Domain.Dtos.Role.RoleCondition.Name">
             <summary>
             角色名称
@@ -428,6 +433,31 @@
         <member name="P:Zero.Core.Domain.Entities.Permission.Menu">
             <summary>
             导航属性
+            </summary>
+        </member>
+        <member name="T:Zero.Core.Domain.Entities.PhotoManager">
+            <summary>
+            轮询图表
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.PhotoManager.Title">
+            <summary>
+            图片标题
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.PhotoManager.Url">
+            <summary>
+            图片路径
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.PhotoManager.PhotoClass">
+            <summary>
+            图片样式
+            </summary>
+        </member>
+        <member name="P:Zero.Core.Domain.Entities.PhotoManager.Link">
+            <summary>
+            页面跳转链接
             </summary>
         </member>
         <member name="T:Zero.Core.Domain.Entities.Role">
