@@ -54,7 +54,7 @@ namespace Zero.Core.WebApi.Middlewares
                             parameter = request.Form.FormToString();
                         }
                         //form body
-                        if (request.ContentType.Contains("application/json"))
+                        else if (request.ContentType.Contains("application/json"))
                         {
                             request.EnableBuffering();
                             var body = request.Body;
@@ -66,7 +66,7 @@ namespace Zero.Core.WebApi.Middlewares
                             body.Seek(0, SeekOrigin.Begin);
                         }
                         //文件
-                        if (request.ContentType.Contains("form-data"))
+                        else if (request.ContentType.Contains("form-data"))
                         {
                             //表单中的文件
                             var formFile = request.Form.Files;

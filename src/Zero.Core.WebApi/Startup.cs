@@ -33,7 +33,7 @@ using Zero.Core.WebApi.ServiceExtensions;
 using Zero.Core.WebApi.StartupConfigExtensions;
 using Zero.Core.WebApi.StartupExtensions;
 #if DEBUG
-//[assembly:ApiController]
+[assembly:ApiController]
 #else
 [assembly:ApiController]
 #endif

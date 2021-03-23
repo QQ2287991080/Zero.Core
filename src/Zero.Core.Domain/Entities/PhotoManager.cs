@@ -28,5 +28,10 @@ namespace Zero.Core.Domain.Entities
         /// 页面跳转链接
         /// </summary>
         public string Link { get; set; }
+        /// <summary>
+        /// 文件名称
+        /// </summary>
+        public string FileName { get; set; }
+
     }
 }

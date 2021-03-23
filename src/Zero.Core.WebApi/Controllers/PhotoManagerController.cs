@@ -53,7 +53,7 @@ namespace Zero.Core.WebApi.Controllers
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("Add")]
-        public async Task<JsonResult> Add(PhotoManagerInput input)
+        public async Task<JsonResult> Add([FromForm]PhotoManagerInput input)
         {
             IFormFile form = input.Photo;
             //获取文件后缀名
