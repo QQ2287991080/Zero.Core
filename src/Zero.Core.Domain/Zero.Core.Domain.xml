@@ -460,6 +460,11 @@
             页面跳转链接
             </summary>
         </member>
+        <member name="P:Zero.Core.Domain.Entities.PhotoManager.FileName">
+            <summary>
+            文件名称
+            </summary>
+        </member>
         <member name="T:Zero.Core.Domain.Entities.Role">
             <summary>
             角色表
