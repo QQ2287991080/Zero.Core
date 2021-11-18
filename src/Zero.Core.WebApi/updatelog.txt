@@ -1,0 +1,10 @@
+﻿
+
+1.更新框架版本
+https://docs.microsoft.com/zh-cn/aspnet/core/migration/50-to-60?view=aspnetcore-6.0&tabs=visual-studio#update-the-target-framework
+
+2.更新包版本
+https://docs.microsoft.com/zh-cn/aspnet/core/migration/50-to-60?view=aspnetcore-6.0&tabs=visual-studio#update-package-references
+
+3.Pomelo.EntityFrameworkCore更换efcoremysql包
+

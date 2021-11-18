@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Zero.Core.Common.Helper;
 using Zero.Core.EfCore;
-
+using Pomelo.EntityFrameworkCore;
 
 namespace Zero.Core.WebApi.ServiceConfig
 {
@@ -25,7 +25,7 @@ namespace Zero.Core.WebApi.ServiceConfig
                 }
                 else
                 {
-                    option.UseMySQL(conStr);
+                    option.UseMySql(conStr, new MySqlServerVersion(new Version("5.7.29")));
                 }
             });
 

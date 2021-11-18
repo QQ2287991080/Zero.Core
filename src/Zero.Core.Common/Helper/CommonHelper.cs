@@ -29,7 +29,12 @@ namespace Zero.Core.Common.Helper
         /// <returns></returns>
         public static string MD5Encryption(string pass,string salt)
         {
+#if NET6_0
+            MD5 md5 = MD5.Create();
+#else
             MD5 md5 = new MD5CryptoServiceProvider();
+#endif
+            
             //加密内容
             string content = pass + salt;
             //计算哈希值
